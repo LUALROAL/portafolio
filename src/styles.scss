@@ -4,6 +4,14 @@ $gray-darker: #131313;
 $blue-primary: #1561f0;
 $green-primary: #0f0;
 
+@mixin neon-glow($color: $green-primary) {
+  @keyframes neonGlow {
+    0% { text-shadow: 0 0 5px $color, 0 0 10px $color; }
+    50% { text-shadow: 0 0 10px $color, 0 0 20px $color, 0 0 30px $color; }
+    100% { text-shadow: 0 0 5px $color, 0 0 10px $color; }
+  }
+}
+
 /* You can add global styles to this file, and also import other style files */
 // *{
 //   margin: 0 !important;
@@ -26,12 +34,19 @@ $green-primary: #0f0;
   background: transparent;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 12px;
+  // margin-top: 12px;
   position: relative;
   display: inline-block;
   box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
     7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
   outline: none;
+  animation: neonGlow 1.5s infinite alternate;
+    color: $green-primary !important;
+    text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
+    animation: neonGlowTerminal 1.5s infinite alternate;
+    font-size: 1.5rem !important; /* Ajustar tamaño si es necesario */
+    display: inline-block; /* Asegurar que se muestre correctamente */
+
 }
 
 .btn-12 {
@@ -93,32 +108,60 @@ $green-primary: #0f0;
   }
 }
 
+
+
 //Navbar style
 .nav-bar-container {
   padding: 1rem 3rem !important;
-  background: linear-gradient(135deg, $blue-primary 0%, lighten($gray-darker, 10%) 25%, $gray-dark 50%, darken($gray-darker, 10%) 100%);
+  background: linear-gradient(135deg, $gray-darker 0%, lighten($gray-darker, 10%) 25%, $gray-dark 50%, darken($gray-darker, 10%) 100%);
   display: flex;
 
-
   .nav-bar-right {
+
     background: transparent;
     .social-icons {
       background-color: transparent;
       a:hover {
         transform: matrix(1.1, 0, 0, 1.1, 0, 0) !important;
       }
+
+
       a {
+
+
+        @keyframes neonGlowTerminal {
+          0% { text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary; }
+          50% { text-shadow: 0 0 10px $green-primary, 0 0 20px $green-primary, 0 0 30px $green-primary; }
+          100% { text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary; }
+        }
+          color: $green-primary !important;
+          text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
+          animation: neonGlowTerminal 1.5s infinite alternate;
+          font-size: 1.5rem !important; /* Ajustar tamaño si es necesario */
+          display: inline-block; /* Asegurar que se muestre correctamente */
+
         margin-right: 1rem;
         text-decoration: none !important;
         font-size: 2rem !important;
-        color: $gray-light !important;
+        color: $gray-darker !important;
         .bi {
-          background: none !important;
+          background: transparent !important;
           box-shadow: none !important;
+
         }
       }
+
+
+
+
+      .glowing-terminal {
+        color: $green-primary !important; /* Color principal */
+        animation: neonGlowTerminal 1.5s infinite alternate linear !important; /* Animación */
+      }
+
       .social-linkedin:hover {
         color: #0077b5 !important;
+
       }
       .social-github:hover {
         color: #fff !important;
@@ -225,7 +268,8 @@ $green-primary: #0f0;
 
 //Banner style
 .banner-container {
-  background-image: url("./assets/img/LUNA.jpg");
+  // background-color: transparent;
+  // background-image: url("./assets/img/LUNA.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -236,11 +280,17 @@ $green-primary: #0f0;
   .title-banner {
     font-family: "Courier New", Courier, monospace;
     font-size: 4.5rem;
-    text-shadow: 3px 3px 3px $green-primary;
+    color: $green-primary; /* Verde neón */
+    text-shadow:
+      0 0 5px $green-primary,  /* Brillo cercano */
+      0 0 10px $green-primary, /* Brillo medio */
+      0 0 20px $green-primary, /* Brillo extendido */
+      0 0 40px $green-primary, /* Halo más amplio */
+      0 0 80px $green-primary; /* Sombra más lejana */
     background: transparent;
-    color: $green-primary;
     margin-top: 1em;
   }
+
 }
 
 //Banner style end
