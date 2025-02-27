@@ -1,17 +1,27 @@
+$gray-light: #86868b;
+$gray-dark: #2b2b2b;
+$gray-darker: #131313;
+$blue-primary: #1561f0;
+
+
 /* You can add global styles to this file, and also import other style files */
 // *{
 //   margin: 0 !important;
 //   padding-top: 8px !important;
 //   box-sizing: border-box  !important;
 // }
+* {
+  background-color: $gray-darker;
+  // margin: auto;
+}
 //General button style
 .custom-btn {
   width: 130px;
   height: 40px;
-  color: #fff;
+  color: $gray-darker;
   border-radius: 5px;
   padding: 10px 25px;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 500;
   background: transparent;
   cursor: pointer;
@@ -19,10 +29,8 @@
   margin-top: 12px;
   position: relative;
   display: inline-block;
-  box-shadow:
-    inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.1),
-    4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
   outline: none;
 }
 
@@ -38,15 +46,18 @@
   perspective: 230px;
 
   span {
-    background: linear-gradient(0deg, rgba(0, 172, 238, 1) 0%, rgba(2, 126, 251, 1) 100%);
+    background: $gray-light;
+    // background: linear-gradient(
+    //   0deg,
+    //   rgba(0, 172, 238, 1) 0%,
+    //   rgba(2, 126, 251, 1) 100%
+    // );
     display: block;
     position: absolute;
     width: 130px;
     height: 40px;
-    box-shadow:
-      inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-      7px 7px 20px 0px rgba(0, 0, 0, 0.1),
-      4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+      7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     margin: 0;
     text-align: center;
@@ -54,11 +65,8 @@
     transition: all 0.3s;
 
     &:nth-child(1) {
-      box-shadow:
-        -7px -7px 20px 0px #fff9,
-        -4px -4px 5px 0px #fff9,
-        7px 7px 20px 0px #0002,
-        4px 4px 5px 0px #0001;
+      box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+        7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
       transform: rotateX(90deg);
       transform-origin: 50% 50% -20px;
     }
@@ -71,77 +79,85 @@
 
   &:hover {
     span:nth-child(1) {
-      box-shadow:
-        inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-        7px 7px 20px 0px rgba(0, 0, 0, 0.1),
-        4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+      box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+        7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
       transform: rotateX(0deg);
     }
 
     span:nth-child(2) {
-      box-shadow:
-        inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-        7px 7px 20px 0px rgba(0, 0, 0, 0.1),
-        4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+      box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+        7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
       color: transparent;
       transform: rotateX(-90deg);
     }
   }
 }
 
-
-
-
+//Navbar style
 .nav-bar-container {
   padding: 2rem 3rem !important;
-border-bottom: solid 1px #333;
-box-shadow: 0 0 10px #000;
+  border-bottom: solid 1px #333;
+  box-shadow: 0 0 10px #000;
+  background-color: #2b2b2b;
 
-.navbar-brand{
-  img{
-    // box-shadow: 0 0 10px #000;
-  }
-}
-  .nav-bar-right{
-    .social-icons{
-      a:hover{
-       transform: matrix(1.1, 0, 0, 1.1, 0, 0) !important;
+  .nav-bar-right {
+    background-color: $gray-dark;
+    .social-icons {
+      background-color: transparent;
+      a:hover {
+        transform: matrix(1.1, 0, 0, 1.1, 0, 0) !important;
       }
-      a{
+      a {
         margin-right: 1rem;
         text-decoration: none !important;
         font-size: 2rem !important;
+        color: $gray-light !important;
+        .bi {
+          background: none !important;
+          box-shadow: none !important;
+        }
       }
-      .social-linkedin{
+      .social-linkedin:hover {
         color: #0077b5 !important;
       }
-      .social-github{
-        color: #333 !important;
+      .social-github:hover {
+        color: #181717 !important;
       }
-      .social-whatsapp{
+      .social-whatsapp:hover {
         color: #25d366 !important;
       }
-      .social-instagram{
+      .social-instagram:hover {
         color: #e1306c !important;
       }
-
     }
   }
 
   .nav-bar-left {
+    background-color: $gray-dark;
+
+    .navbar-brand {
+      .logo {
+        width: 100px;
+        height: 100px;
+        background-color: $gray-dark;
+      }
+    }
+
     .test-logo {
       // background-color: #000000;
-      color: #000;
-      font-family: 'Courier New', Courier, monospace;
+      background-color: $gray-dark;
+      // background-color: transparent;
+      color: $gray-light;
+      font-family: "Courier New", Courier, monospace;
       padding: 1rem;
       border-radius: 8px;
+
       // width: fit-content;
       // box-shadow: 0 0 10px #0f0;
-
       h2 {
         font-size: 1.5rem;
         font-weight: bold;
-        text-shadow: 0 0 5px #333, 0 0 10px #333;
+        text-shadow: 0 0 5px $gray-darker, 0 0 10px $gray-darker;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -153,10 +169,11 @@ box-shadow: 0 0 10px #000;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        background-color: transparent;
 
         &::before {
           content: "Portafolio$ ";
-          color: #000;
+          color: $gray-light;
           font-weight: bold;
         }
       }
@@ -164,16 +181,20 @@ box-shadow: 0 0 10px #000;
       .typing {
         display: inline-block;
         overflow: hidden;
-        white-space: nowrap;
-        border-right: 2px solid #000;
+        white-space: normal;
+        background-color: transparent;
+        // border-right: 2px solid $gray-light;
+        max-width: 100%;
         width: 0;
         animation: typing 3s steps(20, end) forwards, cursor-blink 0.8s infinite;
 
         &::after {
           content: "_";
-          // display: inline-block;
+          display: inline-block;
           animation: blink 0.8s infinite;
+          color: $gray-light;
         }
+
       }
 
       @keyframes blink {
@@ -198,16 +219,124 @@ box-shadow: 0 0 10px #000;
       }
     }
   }
+}
+//navbar style end
 
-
+//Banner style
+.banner-container {
+  // background-image: url("./assets/img/CODE-modified.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  // background-color: rgba(0, 0, 0, 0.8); /* Negro con 50% de opacidad */
+  // background-blend-mode: darken; /* Mezcla el color con la imagen */
+  // margin: 0 50px;
+  position: relative;
+  .title-banner {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 4.5rem;
+    text-shadow: 3px 3px 3px #333;
+    background: transparent;
+    color: #86868b;
+  }
 }
 
+//Banner style end
 
 //Responsive
+@media (min-width: 759px) and (max-width: 1220px) {
+  .nav-bar-left {
+    .navbar-brand {
+      background-color: $gray-dark !important;
+
+      .logo {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+}
 
 @media (max-width: 760px) {
-  .nav-bar-container {
-    border: none;
-    box-shadow: none;
+    .nav-bar-container {
+    flex-direction: column;
+    padding: 1rem;
+    text-align: center;
+
+
+  .nav-bar-left{
+
+    width: 100%;
+    justify-content: center;
+  }
+  .nav-bar-right {
+    width: 100%;
+    justify-content: center;
+
+    .social-icons{
+
+      .social-linkedin {
+        color: #0077b5 !important;
+      }
+      .social-github {
+        color: #181717 !important;
+      }
+      .social-whatsapp{
+        color: #25d366 !important;
+      }
+      .social-instagram {
+        color: #e1306c !important;
+      }
+    }
+  }
+}
+  .navbar-brand {
+    background-color: $gray-dark;
+    .logo {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .test-logo{
+    width: 60%;
+
+    h2 {
+      width: 80%;
+         .typing {
+      line-height: 10px;
+      font-size: 12px;
+     }
+
+    }
+     .command {
+
+      &::before {
+        // content: "Portafolio$ ";
+        font-size: 12px;
+      }
+    }
+
+
+  }
+
+  .social-icons a {
+    font-size: 1.5rem;
+  }
+
+  .custom-btn {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+  }
+
+  //Banner style
+  .banner-container {
+    // margin: 0 10px;
+    .title-banner {
+      font-size: 2.5rem;
+    }
   }
 }
