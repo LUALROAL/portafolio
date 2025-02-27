@@ -27,7 +27,7 @@
 }
 
 .btn-12 {
-  // position: relative;
+  position: relative;
   right: 20px;
   bottom: 20px;
   border: none;
@@ -94,7 +94,14 @@
 
 .nav-bar-container {
   padding: 2rem 3rem !important;
+border-bottom: solid 1px #333;
+box-shadow: 0 0 10px #000;
 
+.navbar-brand{
+  img{
+    // box-shadow: 0 0 10px #000;
+  }
+}
   .nav-bar-right{
     .social-icons{
       a:hover{
@@ -119,5 +126,88 @@
       }
 
     }
+  }
+
+  .nav-bar-left {
+    .test-logo {
+      // background-color: #000000;
+      color: #000;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 1rem;
+      border-radius: 8px;
+      // width: fit-content;
+      // box-shadow: 0 0 10px #0f0;
+
+      h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-shadow: 0 0 5px #333, 0 0 10px #333;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      .command {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &::before {
+          content: "Portafolio$ ";
+          color: #000;
+          font-weight: bold;
+        }
+      }
+
+      .typing {
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 2px solid #000;
+        width: 0;
+        animation: typing 3s steps(20, end) forwards, cursor-blink 0.8s infinite;
+
+        &::after {
+          content: "_";
+          // display: inline-block;
+          animation: blink 0.8s infinite;
+        }
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes cursor-blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+    }
+  }
+
+
+}
+
+
+//Responsive
+
+@media (max-width: 760px) {
+  .nav-bar-container {
+    border: none;
+    box-shadow: none;
   }
 }
