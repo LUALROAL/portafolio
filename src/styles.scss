@@ -2,7 +2,7 @@ $gray-light: #86868b;
 $gray-dark: #2b2b2b;
 $gray-darker: #131313;
 $blue-primary: #1561f0;
-
+$green-primary: #0f0;
 
 /* You can add global styles to this file, and also import other style files */
 // *{
@@ -95,13 +95,13 @@ $blue-primary: #1561f0;
 
 //Navbar style
 .nav-bar-container {
-  padding: 2rem 3rem !important;
-  border-bottom: solid 1px #333;
-  box-shadow: 0 0 10px #000;
-  background-color: #2b2b2b;
+  padding: 1rem 3rem !important;
+  background: linear-gradient(135deg, $blue-primary 0%, lighten($gray-darker, 10%) 25%, $gray-dark 50%, darken($gray-darker, 10%) 100%);
+  display: flex;
+
 
   .nav-bar-right {
-    background-color: $gray-dark;
+    background: transparent;
     .social-icons {
       background-color: transparent;
       a:hover {
@@ -121,7 +121,7 @@ $blue-primary: #1561f0;
         color: #0077b5 !important;
       }
       .social-github:hover {
-        color: #181717 !important;
+        color: #fff !important;
       }
       .social-whatsapp:hover {
         color: #25d366 !important;
@@ -133,31 +133,33 @@ $blue-primary: #1561f0;
   }
 
   .nav-bar-left {
-    background-color: $gray-dark;
+    background-color: transparent;
 
     .navbar-brand {
+      background-color: transparent;
       .logo {
         width: 100px;
         height: 100px;
-        background-color: $gray-dark;
+        background-color: transparent;
       }
     }
 
     .test-logo {
       // background-color: #000000;
-      background-color: $gray-dark;
+      background-color: transparent;
       // background-color: transparent;
-      color: $gray-light;
+      color: $green-primary;
+      // color: $gray-dark;
       font-family: "Courier New", Courier, monospace;
       padding: 1rem;
       border-radius: 8px;
 
       // width: fit-content;
-      // box-shadow: 0 0 10px #0f0;
+      // box-shadow: 0 0 10px $green-primary;
       h2 {
-        font-size: 1.5rem;
+        font-size: 1.9rem;
         font-weight: bold;
-        text-shadow: 0 0 5px $gray-darker, 0 0 10px $gray-darker;
+        text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -173,7 +175,7 @@ $blue-primary: #1561f0;
 
         &::before {
           content: "Portafolio$ ";
-          color: $gray-light;
+          color: $green-primary;
           font-weight: bold;
         }
       }
@@ -181,7 +183,7 @@ $blue-primary: #1561f0;
       .typing {
         display: inline-block;
         overflow: hidden;
-        white-space: normal;
+        white-space: nowrap;
         background-color: transparent;
         // border-right: 2px solid $gray-light;
         max-width: 100%;
@@ -192,9 +194,8 @@ $blue-primary: #1561f0;
           content: "_";
           display: inline-block;
           animation: blink 0.8s infinite;
-          color: $gray-light;
+          color: $green-primary;
         }
-
       }
 
       @keyframes blink {
@@ -224,7 +225,7 @@ $blue-primary: #1561f0;
 
 //Banner style
 .banner-container {
-  // background-image: url("./assets/img/CODE-modified.jpg");
+  background-image: url("./assets/img/LUNA.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -235,19 +236,21 @@ $blue-primary: #1561f0;
   .title-banner {
     font-family: "Courier New", Courier, monospace;
     font-size: 4.5rem;
-    text-shadow: 3px 3px 3px #333;
+    text-shadow: 3px 3px 3px $green-primary;
     background: transparent;
-    color: #86868b;
+    color: $green-primary;
+    margin-top: 1em;
   }
 }
 
 //Banner style end
 
 //Responsive
+
 @media (min-width: 759px) and (max-width: 1220px) {
   .nav-bar-left {
     .navbar-brand {
-      background-color: $gray-dark !important;
+      // background-color: $gray-dark !important;
 
       .logo {
         width: 50px;
@@ -258,78 +261,98 @@ $blue-primary: #1561f0;
 }
 
 @media (max-width: 760px) {
-    .nav-bar-container {
+  .nav-bar-container {
     flex-direction: column;
     padding: 1rem;
     text-align: center;
 
+    .nav-bar-left {
+      width: 100%;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 100%;
+      word-wrap: break-word;
+      white-space: normal;
 
-  .nav-bar-left{
-
-    width: 100%;
-    justify-content: center;
-  }
-  .nav-bar-right {
-    width: 100%;
-    justify-content: center;
-
-    .social-icons{
-
-      .social-linkedin {
-        color: #0077b5 !important;
+      .test-logo {
+        width: 60%;
+        position: relative;
+        h2 {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 9999;
+          // background: rgba(0, 0, 0, 0.7); // Opcional, para mejorar visibilidad
+          // color: $gray-light;
+          text-align: center;
+          width: 100%;
+          // width: 80%;
+          .command::before {
+            content: ""; /* Oculta el texto */
+          }
+          .typing {
+            line-height: 10px;
+            font-size: 12px;
+            white-space: pre-line; /* Permite saltos de línea */
+            display: block; /* Asegura que se comporte como bloque */
+            text-align: center; /* Centra el texto */
+          }
+        }
+        .command {
+          &::before {
+            content: "";
+            font-size: 12px;
+          }
+        }
       }
-      .social-github {
-        color: #181717 !important;
-      }
-      .social-whatsapp{
-        color: #25d366 !important;
-      }
-      .social-instagram {
-        color: #e1306c !important;
+
+      .navbar-brand {
+        // background-color: $gray-dark;
+        align-items: center;
+        .logo {
+          width: 50px;
+          height: 50px;
+        }
       }
     }
-  }
-}
-  .navbar-brand {
-    background-color: $gray-dark;
-    .logo {
-      width: 50px;
-      height: 50px;
-    }
-  }
+    .nav-bar-right {
+align-items: center;
+      width: 100%;
+      justify-content:space-between;
 
-  .test-logo{
-    width: 60%;
-
-    h2 {
-      width: 80%;
-         .typing {
-      line-height: 10px;
-      font-size: 12px;
-     }
-
-    }
-     .command {
-
-      &::before {
-        // content: "Portafolio$ ";
-        font-size: 12px;
+      .social-icons {
+        .social-linkedin {
+          a {
+            font-size: 1rem !important;
+          }
+          color: #0077b5 !important;
+          font-size: 1rem !important;
+        }
+        .social-github {
+          font-size: 1rem !important;
+          color: #181717 !important;
+        }
+        .social-whatsapp {
+          font-size: 1rem !important;
+          color: #25d366 !important;
+        }
+        .social-instagram {
+          font-size: 1rem !important;
+          color: #e1306c !important;
+        }
       }
     }
-
-
-  }
-
-  .social-icons a {
-    font-size: 1.5rem;
-  }
-
-  .custom-btn {
-    width: 100%;
-    max-width: 150px;
-    height: auto;
-    font-size: 0.9rem;
-    padding: 0.4rem 1rem;
+    .custom-btn {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+      font-size: 0.9rem;
+      padding: 0.4rem 1rem;
+    }
   }
 
   //Banner style
@@ -337,6 +360,7 @@ $blue-primary: #1561f0;
     // margin: 0 10px;
     .title-banner {
       font-size: 2.5rem;
+      margin-top: 3em;
     }
   }
 }
