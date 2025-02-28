@@ -1,19 +1,6 @@
-@import '../../../styles.scss';
-.banner-container{
-width: 100%;
-.title-banner{
-// @keyframes neonGlowTerminal {
-//   0% { text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary; }
-//   50% { text-shadow: 0 0 10px $green-primary, 0 0 20px $green-primary, 0 0 30px $green-primary; }
-//   100% { text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary; }
-// }
 
-// .glowing-terminal {
-//   color: $green-primary !important;
-//   text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
-//   animation: neonGlowTerminal 1.5s infinite alternate;
-//   font-size: 3rem !important; /* Ajustar tamaño si es necesario */
-//   display: inline-block; /* Asegurar que se muestre correctamente */
-// }
-}
+.banner-container{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+width: 100%;
+
 }
