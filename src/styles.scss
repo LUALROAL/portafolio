@@ -340,8 +340,10 @@ $white: #fff;
     }
 
     .name {
+      font-family: 'Courier New', Courier, monospace;
       font-size: 2rem;
       text-shadow: 3px 3px 5px $gray-light;
+      font-weight: bold;
       @keyframes neonGlowTerminal {
         0% {
           text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;

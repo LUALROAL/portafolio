@@ -6,10 +6,11 @@ import { HeaderComponent } from "./shared/components/header/header.component";
 import { AboutComponent } from './components/about/about.component';
 import { AppMatrixBackgroundComponent } from './shared/components/app-matrix-background/app-matrix-background.component';
 import { isPlatformBrowser } from '@angular/common';
+import { SkillsComponent } from './components/skills/skills.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,HeaderComponent,AboutComponent],
+  imports: [RouterOutlet,HeaderComponent,AboutComponent, SkillsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
