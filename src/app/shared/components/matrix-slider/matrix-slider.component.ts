@@ -20,7 +20,6 @@ export class MatrixSliderComponent implements OnInit, OnDestroy {
 
   currentIndex = 0;
   intervalId: any;
-
   constructor(private ngZone: NgZone,
     private matrixSliderService: MatrixSliderService) { }
 

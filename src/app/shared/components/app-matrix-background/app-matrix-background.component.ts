@@ -1,12 +1,15 @@
-import { isPlatformBrowser } from "@angular/common";
+import { CommonModule, isPlatformBrowser } from "@angular/common";
 import { Component, OnInit, ElementRef, Renderer2, HostListener, OnDestroy, Inject, PLATFORM_ID } from "@angular/core";
 import { MatrixSliderComponent } from "../matrix-slider/matrix-slider.component";
+import { trigger, transition, animate, style } from "@angular/animations";
+
 
 @Component({
   selector: 'app-app-matrix-background',
-  imports: [MatrixSliderComponent],
+  standalone: true,
+  imports: [CommonModule, MatrixSliderComponent],
   templateUrl: './app-matrix-background.component.html',
-  styleUrl: './app-matrix-background.component.scss'
+  styleUrl: './app-matrix-background.component.scss',
 })
 export class AppMatrixBackgroundComponent {
   private canvas!: HTMLCanvasElement;
@@ -18,6 +21,8 @@ export class AppMatrixBackgroundComponent {
   private cursorX = 0;
   private cursorY = 0;
   private isBrowser: boolean;
+
+  isVisible = true;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(this.platformId); // Verifica si está en el navegador
@@ -86,4 +91,6 @@ export class AppMatrixBackgroundComponent {
 
     requestAnimationFrame(() => this.animateMatrix());
   }
+
+
 }
