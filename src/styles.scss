@@ -51,7 +51,7 @@ $white: #fff;
   color: $gray-darker;
   border-radius: 5px;
   padding: 10px 25px;
-  font-family: "Lato", sans-serif;
+  font-family: "Courier New", Courier, monospace;
   font-weight: 500;
   background: transparent;
   cursor: pointer;
@@ -365,6 +365,7 @@ $white: #fff;
     .qualification {
       font-size: 1.5rem;
       font-weight: bold;
+      font-family: 'Courier New', Courier, monospace;
       @keyframes neonGlowTerminal {
         0% {
           text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
@@ -407,8 +408,9 @@ $white: #fff;
     text-align: justify;
     font-size: 1rem;
      margin: 8% 0 0 5%; // (arriba, derecha, abajo, izquierda)
-
+// font-family: 'Courier New', Courier, monospace;
      .section-title{
+      font-family: 'Courier New', Courier, monospace;
       text-align: center;
       margin-bottom: 1em;
       font-size: 2rem;

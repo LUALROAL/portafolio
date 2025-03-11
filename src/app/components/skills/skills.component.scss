@@ -52,11 +52,10 @@ $white: #fff;
     text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
     // animation: neonGlowTerminal 1.5s infinite alternate;
     font-family: 'Courier New', Courier, monospace;
-    .skill-card {
 
+    .skill-card {
       background: $gray-dark;
       transition: transform 0.3s ease-in-out;
-
       &:hover {
         animation: neonGlowTerminal 1.5s infinite alternate;
         transform: scale(1.05);
