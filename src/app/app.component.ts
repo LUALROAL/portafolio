@@ -10,6 +10,7 @@ import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { MatrixSliderComponent } from "./shared/components/matrix-slider/matrix-slider.component";
 import { MatrixSliderService } from './services/matrix/matrix-slider.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
