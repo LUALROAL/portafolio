@@ -36,6 +36,39 @@ $white: #fff;
 }
 
 
+// Estilos para el video de fondo
+
+.video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.fade-in {
+  animation: fadeInVideo 1s ease-in-out;
+}
+
+@keyframes fadeInVideo {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Estilos para el video de fondo fin
+
+
 
 // Estilos para el loading
 
@@ -641,5 +674,38 @@ $white: #fff;
       // margin-top: 3em;
       text-align: center;
     }
+  }
+}
+
+
+.video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.fade-in {
+  animation: fadeInVideo 8s ease-in-out;
+}
+
+@keyframes fadeInVideo {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

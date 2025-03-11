@@ -1,12 +1,33 @@
+<app-app-matrix-background  *ngIf="!showContent && !showVideo" class="fade-in"></app-app-matrix-background>
+<!-- Video de introducción (se muestra solo después de presionar el botón) -->
+<div *ngIf="showVideo" class="video-container fade-in">
+  <video autoplay muted playsinline (ended)="showVideo = false; showContent = true">
+    <source src="../assets/audio/matrix.mp4" type="video/mp4">
+    Tu navegador no soporta el video.
+  </video>
+</div>
 
-<app-app-matrix-background  *ngIf="!showContent"></app-app-matrix-background>
+
 <div *ngIf="showContent" class="fade-in">
+  <!-- Video de introducción -->
+  <!-- <div *ngIf="showVideo" class="video-container">
+    <video autoplay muted playsinline (ended)="showVideo = false; showContent = true">
+      <source src="assets/intro.mp4" type="video/mp4">
+      Tu navegador no soporta el video.
+    </video>
+  </div> -->
+
   <app-header></app-header>
   <app-about></app-about>
   <app-skills></app-skills>
   <app-projects></app-projects>
 
+  <audio  #audioElement controls autoplay loop style="display: none;">
+    <source src="../../../../assets/audio/effec_sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 </div>
+
 <router-outlet></router-outlet>
 
 

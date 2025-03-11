@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, HostListener, Inject, PLATFORM_ID, Renderer2 } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, HostListener, Inject, PLATFORM_ID, Renderer2, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavBarComponent } from "./shared/components/nav-bar/nav-bar.component";
 import { BannerComponent } from './components/banner/banner.component';
@@ -19,7 +19,8 @@ import { trigger, transition, style, animate } from '@angular/animations';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-
+  @ViewChild('audioElement') audioRef!: ElementRef<HTMLAudioElement>;
+  showVideo = false;
   showContent = false;
 
   title = 'portafolio';
@@ -50,7 +51,7 @@ export class AppComponent {
 
       this.matrixSliderService.matrixEntered$.subscribe((entered) => {
         if (entered) {
-          this.showContent = true;
+          this.playIntroVideo();
         }
       });
 
@@ -59,7 +60,25 @@ export class AppComponent {
         this.initStrips();
         this.draw();
       }
+
+
+
     }
+
+    ngAfterViewInit() {
+
+    }
+
+    playIntroVideo(): void {
+      this.showVideo = true;
+
+      // Esperar 30 segundos antes de mostrar el contenido
+      setTimeout(() => {
+        this.showVideo = false;
+        this.showContent = true;
+      }, 24000); // 30 segundos
+    }
+
 
     private initCanvas(): void {
       this.canvas = this.renderer.createElement('canvas');

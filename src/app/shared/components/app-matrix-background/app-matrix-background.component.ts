@@ -21,6 +21,7 @@ export class AppMatrixBackgroundComponent {
   private cursorX = 0;
   private cursorY = 0;
   private isBrowser: boolean;
+  private animationFrameId!: number;
 
   isVisible = true;
 
@@ -29,15 +30,15 @@ export class AppMatrixBackgroundComponent {
   }
 
   ngAfterViewInit() {
-    if (!this.isBrowser) return; // Evita ejecución en SSR
+    if (!this.isBrowser) return;
 
     this.canvas = document.getElementById('matrixCanvas') as HTMLCanvasElement;
-    if (!this.canvas) return; // Evita errores si el elemento no se encuentra
+    if (!this.canvas) return;
 
     this.ctx = this.canvas.getContext('2d')!;
     this.resizeCanvas();
     this.initializeDrops();
-    this.animateMatrix();
+    this.startAnimationLoop();
   }
 
   @HostListener('window:resize')
@@ -90,6 +91,37 @@ export class AppMatrixBackgroundComponent {
     }
 
     requestAnimationFrame(() => this.animateMatrix());
+  }
+
+  private startAnimationLoop() {
+    const animate = () => {
+      this.ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+      this.ctx.fillStyle = '#0F0';
+      this.ctx.font = `${this.fontSize}px monospace`;
+
+      for (let i = 0; i < this.drops.length; i++) {
+        const text = this.characters.charAt(Math.floor(Math.random() * this.characters.length));
+        const x = i * this.fontSize;
+        const y = this.drops[i] * this.fontSize;
+
+        const distance = Math.hypot(this.cursorX - x, this.cursorY - y);
+        const brightness = Math.max(0.3, 1 - distance / 200);
+
+        this.ctx.fillStyle = `rgba(0, 255, 0, ${brightness})`;
+        this.ctx.fillText(text, x, y);
+
+        if (y > this.canvas.height && Math.random() > 0.975) {
+          this.drops[i] = 0;
+        }
+        this.drops[i]++;
+      }
+
+      this.animationFrameId = requestAnimationFrame(animate);
+    };
+
+    this.animationFrameId = requestAnimationFrame(animate);
   }
 
 
