@@ -1,9 +1,12 @@
 
-<app-app-matrix-background></app-app-matrix-background>
-<!-- <app-header></app-header>
-<app-about></app-about>
-<app-skills></app-skills>
-<app-projects></app-projects> -->
+<app-app-matrix-background  *ngIf="!showContent"></app-app-matrix-background>
+<div *ngIf="showContent">
+  <app-header></app-header>
+  <app-about></app-about>
+  <app-skills></app-skills>
+  <app-projects></app-projects>
+
+</div>
 
 <router-outlet></router-outlet>
 

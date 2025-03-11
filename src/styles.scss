@@ -19,16 +19,25 @@ $white: #fff;
   }
 }
 
+//carrousel style
+
+
+//end carrousel style
+
+
 //cursor style
-// #matrixCanvas {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100vw;
-//   height: 100vh;
-//   pointer-events: none; // Para que no interfiera con los clics
-//   z-index: 9999;
-// }
+
+
+#matrixCursorCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; // Permite que los clics pasen al fondo
+  z-index: 9999; // Asegura que esté sobre todo
+}
+
 
 //end cursor style
 

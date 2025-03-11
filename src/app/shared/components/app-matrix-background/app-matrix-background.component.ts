@@ -1,9 +1,10 @@
 import { isPlatformBrowser } from "@angular/common";
 import { Component, OnInit, ElementRef, Renderer2, HostListener, OnDestroy, Inject, PLATFORM_ID } from "@angular/core";
+import { MatrixSliderComponent } from "../matrix-slider/matrix-slider.component";
 
 @Component({
   selector: 'app-app-matrix-background',
-  imports: [],
+  imports: [MatrixSliderComponent],
   templateUrl: './app-matrix-background.component.html',
   styleUrl: './app-matrix-background.component.scss'
 })

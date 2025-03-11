@@ -1,21 +1,25 @@
-import { Component, ElementRef, HostListener, Inject, PLATFORM_ID, Renderer2 } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, HostListener, Inject, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavBarComponent } from "./shared/components/nav-bar/nav-bar.component";
 import { BannerComponent } from './components/banner/banner.component';
 import { HeaderComponent } from "./shared/components/header/header.component";
 import { AboutComponent } from './components/about/about.component';
 import { AppMatrixBackgroundComponent } from './shared/components/app-matrix-background/app-matrix-background.component';
-import { isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
+import { MatrixSliderComponent } from "./shared/components/matrix-slider/matrix-slider.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,HeaderComponent,AboutComponent, SkillsComponent, ProjectsComponent, AppMatrixBackgroundComponent],
+  imports: [CommonModule, RouterOutlet, HeaderComponent, AboutComponent, SkillsComponent, ProjectsComponent, AppMatrixBackgroundComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+
+  showContent = false;
+
   title = 'portafolio';
 
    private canvas!: HTMLCanvasElement;
@@ -122,6 +126,11 @@ export class AppComponent {
       if (isPlatformBrowser(this.platformId) && this.animationFrameId) {
         cancelAnimationFrame(this.animationFrameId);
       }
+    }
+
+
+    enableContent() {
+      this.showContent = true;
     }
 
 }

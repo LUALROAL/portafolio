@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import '../../../../styles.scss';
+.matrix-slider {
+  position: relative;
+  width: 80vw;
+  margin: auto;
+  // max-width: 600px;
+  height: 200px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.816);
+  border: 2px solid #00ff00;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .slider-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .slider-item {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      font-size: 24px;
+      font-family: 'Share Tech Mono', monospace;
+      color: #00ff00;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 1s ease, transform 1s ease;
+
+      &.active {
+        opacity: 1;
+        transform: translateY(0);
+        animation: matrixRain 3s infinite alternate;
+      }
+    }
+  }
+
+  .slider-btn {
+    position: absolute;
+    background: none;
+    border: none;
+    color: #00ff00;
+    font-size: 4em;
+    font-weight: bolder;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &.prev { left: 10px; }
+    &.next { right: 10px; }
+
+    &:hover {
+      color: #33ff33!important;
+    }
+
+    color: $green-primary !important;
+    text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
+    animation: neonGlowTerminal 1.5s infinite alternate;
+  }
+}
+
+@keyframes matrixRain {
+  0% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
+  100% { text-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33; }
+}
+
+
