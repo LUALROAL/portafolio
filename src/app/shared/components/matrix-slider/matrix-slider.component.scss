@@ -4,15 +4,15 @@
   position: relative;
   width: 80vw;
   margin: auto;
-  // max-width: 600px;
-  height: 200px;
+  height: 600px;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.816);
-  border: 2px solid #00ff00;
+  background-color: rgba(0, 0, 0, 0.141);
+  box-shadow: rgba(46, 109, 10, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
   .slider-content {
     position: relative;
@@ -23,15 +23,19 @@
     align-items: center;
 
     .slider-item {
+      font-weight: bold;
       position: absolute;
       width: 100%;
       text-align: center;
-      font-size: 24px;
+      font-size: 30px;
       font-family: 'Share Tech Mono', monospace;
-      color: #00ff00;
+      // color: $gray-light;
       opacity: 0;
       transform: translateY(-20px);
       transition: opacity 1s ease, transform 1s ease;
+      color: $white !important;
+      text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
+      animation: neonGlowTerminal 1.5s infinite alternate;
 
       &.active {
         opacity: 1;
@@ -63,6 +67,59 @@
     text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
     animation: neonGlowTerminal 1.5s infinite alternate;
   }
+
+  .bottom-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12rem;
+    // margin-bottom: 50px;
+    position: fixed;
+    margin-top: 20%;
+    margin-right: 18px;
+
+    .slider-btn {
+      position: relative;
+      font-size: 1.5em;
+      top: auto;
+      transform: none;
+      padding: 0.3em 0.8em;
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: inset 0px -4px 6px rgba(0, 0, 0, 0.3), 0px 4px 10px rgba(0, 0, 0, 0.5);
+
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: inset 0px -6px 8px rgba(0, 0, 0, 0.4), 0px 6px 12px rgba(0, 0, 0, 0.6);
+      }
+
+      &:nth-child(1) {
+        transform: rotate(-50deg) scale(1.1);
+        background: radial-gradient(circle, #cc0000 10%, #330000 80%);
+        border: 2px solid #ff4444;
+        margin-right: 8px;
+        &:hover {
+          transform: rotate(0deg) scale(1.1);
+          // padding: 20px;
+        }
+      }
+
+      &:nth-child(2) {
+        transform: rotate(50deg) scale(1.1);
+        background: radial-gradient(circle, #0044cc 10%, #001133 80%);
+        border: 2px solid #0077ff;
+        &:hover {
+          transform: rotate(10deg) scale(1.1);
+          // padding: 20px;
+        }
+      }
+    }
+  }
 }
 
 @keyframes matrixRain {
@@ -70,4 +127,21 @@
   100% { text-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33; }
 }
 
-
+@media (max-width: 537px) {
+  .matrix-slider {
+    .slider-btn {
+      display: none;
+    }
+    img{
+      display: none;
+    }
+    .bottom-buttons {
+      gap: 7rem;
+      .slider-btn {
+        margin-top: 50%;
+        display: block;
+        font-size: 1.5em;
+      }
+    }
+  }
+}

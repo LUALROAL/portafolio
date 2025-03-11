@@ -1,11 +1,17 @@
 <div class="matrix-slider">
   <div class="slider-content">
+    <img src="../../../../assets/img/Matrix-y-morfeo-removebg-preview.png" alt="">
     <div class="slider-item" *ngFor="let item of slides; let i = index" [class.active]="i === currentIndex">
       <p>{{ item }}</p>
     </div>
   </div>
+  <div class="bottom-buttons">
+    <button (click)="enterMatrix()" class="slider-btn"></button>
+    <button (click)="prevSlide()" class="slider-btn"></button>
+  </div>
 
-  <button (click)="prevSlide()" class="slider-btn prev"><</button>
-  <button (click)="nextSlide()" class="slider-btn next">></button>
+  <!-- <button (click)="prevSlide()" class="slider-btn prev">&lt;</button>
+  <button (click)="nextSlide()" class="slider-btn next">&gt;</button> -->
+
 </div>
 

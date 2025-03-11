@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { MatrixSliderService } from '../../../services/matrix/matrix-slider.service';
 
 @Component({
   selector: 'app-matrix-slider',
@@ -10,6 +11,7 @@ import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 })
 export class MatrixSliderComponent implements OnInit, OnDestroy {
   slides: string[] = [
+    'The choice is yours 💊...',
     'Wake up, Neo...',
     'The Matrix has you...',
     'Follow the white rabbit.',
@@ -19,7 +21,8 @@ export class MatrixSliderComponent implements OnInit, OnDestroy {
   currentIndex = 0;
   intervalId: any;
 
-  constructor(private ngZone: NgZone) {}
+  constructor(private ngZone: NgZone,
+    private matrixSliderService: MatrixSliderService) { }
 
   ngOnInit() {
     this.startAutoSlide();
@@ -37,9 +40,14 @@ export class MatrixSliderComponent implements OnInit, OnDestroy {
         this.ngZone.run(() => {
           this.nextSlide();
         });
-      }, 3000); // 🔹 Cambia cada 3 segundos
+      }, 7000); // 🔹 Cambia cada 3 segundos
     });
   }
+
+  enterMatrix() {
+    this.matrixSliderService.enterMatrix();
+  }
+
 
   nextSlide() {
     this.currentIndex = (this.currentIndex + 1) % this.slides.length;

@@ -9,6 +9,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { MatrixSliderComponent } from "./shared/components/matrix-slider/matrix-slider.component";
+import { MatrixSliderService } from './services/matrix/matrix-slider.service';
 
 @Component({
   selector: 'app-root',
@@ -36,7 +37,8 @@ export class AppComponent {
     constructor(
       private el: ElementRef,
       private renderer: Renderer2,
-      @Inject(PLATFORM_ID) private platformId: Object
+      @Inject(PLATFORM_ID) private platformId: Object,
+      private matrixSliderService: MatrixSliderService
     ) {
       if (isPlatformBrowser(this.platformId)) {
         this.renderer.setStyle(document.body, 'background-color', '#131313');
@@ -44,6 +46,13 @@ export class AppComponent {
     }
 
     ngOnInit(): void {
+
+      this.matrixSliderService.matrixEntered$.subscribe((entered) => {
+        if (entered) {
+          this.showContent = true;
+        }
+      });
+
       if (isPlatformBrowser(this.platformId)) {
         this.initCanvas();
         this.initStrips();
