@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatrixSliderService } from '../../../services/matrix/matrix-slider.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { MatrixSliderService } from '../../../services/matrix/matrix-slider.serv
   styleUrl: './matrix-slider.component.scss'
 })
 export class MatrixSliderComponent implements OnInit, OnDestroy {
+  @ViewChild('audioElement') audioElement!: ElementRef<HTMLAudioElement>;
   slides: string[] = [
     'The choice is yours 💊...',
     'Wake up, Neo...',
@@ -26,6 +27,26 @@ export class MatrixSliderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.startAutoSlide();
   }
+
+
+  ngAfterViewInit() {
+  if (this.audioElement?.nativeElement) {
+    const audio = this.audioElement.nativeElement;
+    audio.volume = 0; // Inicia sin sonido
+    audio.play().catch(error => console.warn("Reproducción bloqueada", error));
+
+    let vol = 0;
+    const fadeAudio = setInterval(() => {
+      if (vol < 1) {
+        vol += 0.05; // Incrementa volumen gradualmente
+        audio.volume = vol;
+      } else {
+        clearInterval(fadeAudio);
+      }
+    }, 200); // Ajusta la velocidad del fade-in
+  }
+}
+
 
   ngOnDestroy() {
     if (this.intervalId) {
