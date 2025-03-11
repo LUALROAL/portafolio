@@ -7,10 +7,11 @@ import { AboutComponent } from './components/about/about.component';
 import { AppMatrixBackgroundComponent } from './shared/components/app-matrix-background/app-matrix-background.component';
 import { isPlatformBrowser } from '@angular/common';
 import { SkillsComponent } from './components/skills/skills.component';
+import { ProjectsComponent } from './components/projects/projects.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,HeaderComponent,AboutComponent, SkillsComponent],
+  imports: [RouterOutlet,HeaderComponent,AboutComponent, SkillsComponent, ProjectsComponent, AppMatrixBackgroundComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

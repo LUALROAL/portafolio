@@ -7,106 +7,82 @@ import { Component, OnInit, ElementRef, Renderer2, HostListener, OnDestroy, Inje
   templateUrl: './app-matrix-background.component.html',
   styleUrl: './app-matrix-background.component.scss'
 })
-export class AppMatrixBackgroundComponent implements OnInit, OnDestroy {
+export class AppMatrixBackgroundComponent {
   private canvas!: HTMLCanvasElement;
-  private context!: CanvasRenderingContext2D | null;
-  private animationFrameId: number = 0;
-  private textStrip = ['0', '1'];
-  private stripCount = 60;
-  private stripX: number[] = [];
-  private stripY: number[] = [];
-  private dY: number[] = [];
-  private stripFontSize: number[] = [];
-  private colors = ['#cefbe4', '#81ec72', '#5cd646', '#54d13c', '#4ccc32', '#43c728'];
+  private ctx!: CanvasRenderingContext2D;
+  private drops: number[] = [];
+  private columns!: number;
+  private characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZあいうえおカキクケコ'; // Letras tipo Matrix
+  private fontSize = 16;
+  private cursorX = 0;
+  private cursorY = 0;
+  private isBrowser: boolean;
 
-  constructor(
-    private el: ElementRef,
-    private renderer: Renderer2,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
-
-  ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.initCanvas();
-      this.initStrips();
-      this.draw();
-    }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(this.platformId); // Verifica si está en el navegador
   }
 
-  private initCanvas(): void {
-    this.canvas = this.renderer.createElement('canvas');
-    this.context = this.canvas.getContext('2d');
+  ngAfterViewInit() {
+    if (!this.isBrowser) return; // Evita ejecución en SSR
 
-    if (!this.context) return;
+    this.canvas = document.getElementById('matrixCanvas') as HTMLCanvasElement;
+    if (!this.canvas) return; // Evita errores si el elemento no se encuentra
 
-    this.canvas.style.position = 'fixed';
-    this.canvas.style.top = '0';
-    this.canvas.style.left = '0';
-    this.canvas.style.zIndex = '-1';
+    this.ctx = this.canvas.getContext('2d')!;
+    this.resizeCanvas();
+    this.initializeDrops();
+    this.animateMatrix();
+  }
+
+  @HostListener('window:resize')
+  resizeCanvas() {
+    if (!this.isBrowser) return;
+
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
-
-    this.renderer.appendChild(this.el.nativeElement, this.canvas);
+    this.columns = Math.floor(this.canvas.width / this.fontSize);
+    this.drops = Array(this.columns).fill(1);
   }
 
-  private initStrips(): void {
-    for (let i = 0; i < this.stripCount; i++) {
-      this.stripX[i] = Math.floor(Math.random() * this.canvas.width);
-      this.stripY[i] = -100;
-      this.dY[i] = Math.floor(Math.random() * 7) + 3;
-      this.stripFontSize[i] = Math.floor(Math.random() * 16) + 8;
-    }
+  @HostListener('mousemove', ['$event'])
+  updateCursor(event: MouseEvent) {
+    if (!this.isBrowser) return;
+
+    this.cursorX = event.clientX;
+    this.cursorY = event.clientY;
   }
 
-  private drawStrip(x: number, y: number): void {
-    if (!this.context) return;
-
-    for (let k = 0; k <= 20; k++) {
-      const randChar = this.textStrip[Math.floor(Math.random() * this.textStrip.length)];
-      this.context.fillStyle = this.colors[Math.min(k, this.colors.length - 1)];
-      this.context.fillText(randChar, x, y);
-      y -= this.stripFontSize[k] || 8;
-    }
+  private initializeDrops() {
+    this.drops = Array(this.columns).fill(1);
   }
 
-  private draw(): void {
-    if (!this.context) return;
+  private animateMatrix() {
+    if (!this.isBrowser) return;
 
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.context.shadowOffsetX = this.context.shadowOffsetY = 0;
-    this.context.shadowBlur = 8;
-    this.context.shadowColor = '#94f475';
-    this.context.textBaseline = 'top';
-    this.context.textAlign = 'center';
+    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-    for (let j = 0; j < this.stripCount; j++) {
-      this.context.font = `${this.stripFontSize[j]}px Arial`;
+    this.ctx.fillStyle = '#0F0'; // Color verde Matrix
+    this.ctx.font = `${this.fontSize}px monospace`;
 
-      if (this.stripY[j] > this.canvas.height) {
-        this.stripX[j] = Math.floor(Math.random() * this.canvas.width);
-        this.stripY[j] = -100;
-        this.dY[j] = Math.floor(Math.random() * 7) + 3;
-        this.stripFontSize[j] = Math.floor(Math.random() * 16) + 8;
+    for (let i = 0; i < this.drops.length; i++) {
+      const text = this.characters.charAt(Math.floor(Math.random() * this.characters.length));
+      const x = i * this.fontSize;
+      const y = this.drops[i] * this.fontSize;
+
+      // Hacer más brillante cerca del cursor
+      const distance = Math.hypot(this.cursorX - x, this.cursorY - y);
+      const brightness = Math.max(0.3, 1 - distance / 200); // Ajustar intensidad
+
+      this.ctx.fillStyle = `rgba(0, 255, 0, ${brightness})`;
+      this.ctx.fillText(text, x, y);
+
+      if (y > this.canvas.height && Math.random() > 0.975) {
+        this.drops[i] = 0;
       }
-
-      this.drawStrip(this.stripX[j], this.stripY[j]);
-      this.stripY[j] += this.dY[j];
+      this.drops[i]++;
     }
 
-    this.animationFrameId = requestAnimationFrame(() => this.draw());
-  }
-
-  @HostListener('window:resize', [])
-  onResize(): void {
-    if (!this.canvas) return;
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
-    this.initStrips();
-  }
-
-  ngOnDestroy(): void {
-    if (isPlatformBrowser(this.platformId) && this.animationFrameId) {
-      cancelAnimationFrame(this.animationFrameId);
-    }
+    requestAnimationFrame(() => this.animateMatrix());
   }
 }
