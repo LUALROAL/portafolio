@@ -11,6 +11,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { MatrixSliderComponent } from "./shared/components/matrix-slider/matrix-slider.component";
 import { MatrixSliderService } from './services/matrix/matrix-slider.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { CarrosellComponent } from "./shared/components/carrosell/carrosell.component";
 
 @Component({
   selector: 'app-root',
