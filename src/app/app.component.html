@@ -1,3 +1,4 @@
+
 <app-app-matrix-background  *ngIf="!showContent && !showVideo" class="fade-in"></app-app-matrix-background>
 <!-- Video de introducción (se muestra solo después de presionar el botón) -->
 <div *ngIf="showVideo" class="video-container fade-in">
@@ -9,19 +10,12 @@
 
 
 <div *ngIf="showContent" class="fade-in">
-  <!-- Video de introducción -->
-  <!-- <div *ngIf="showVideo" class="video-container">
-    <video autoplay muted playsinline (ended)="showVideo = false; showContent = true">
-      <source src="assets/intro.mp4" type="video/mp4">
-      Tu navegador no soporta el video.
-    </video>
-  </div> -->
 
-  <app-header></app-header>
-  <app-about></app-about>
-  <app-skills></app-skills>
-  <app-projects></app-projects>
-
+  <app-header id="header"></app-header>
+  <app-about  id="about"></app-about>
+  <app-skills id="skills"></app-skills>
+  <app-projects id="projects"></app-projects>
+<app-nav-menu></app-nav-menu>
 
   <!-- <audio  #audioElement controls autoplay loop style="display: none;">
     <source src="../../../../assets/audio/effec_sound.mp3" type="audio/mpeg">

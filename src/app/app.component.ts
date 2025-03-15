@@ -12,10 +12,11 @@ import { MatrixSliderComponent } from "./shared/components/matrix-slider/matrix-
 import { MatrixSliderService } from './services/matrix/matrix-slider.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { CarrosellComponent } from "./shared/components/carrosell/carrosell.component";
+import { NavMenuComponent } from './shared/components/nav-menu/nav-menu.component';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, HeaderComponent, AboutComponent, SkillsComponent, ProjectsComponent, AppMatrixBackgroundComponent],
+  imports: [CommonModule, RouterOutlet, HeaderComponent, AboutComponent, SkillsComponent, ProjectsComponent, AppMatrixBackgroundComponent, NavMenuComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -77,7 +78,8 @@ export class AppComponent {
       setTimeout(() => {
         this.showVideo = false;
         this.showContent = true;
-      }, 24000); // 30 segundos
+      }, 24000);
+      // 24000); // 30 segundos
     }
 
 
@@ -161,6 +163,18 @@ export class AppComponent {
 
     enableContent() {
       this.showContent = true;
+    }
+
+    navigateToSection(sectionId: string): void {
+      this.showContent = true; // Muestra el contenido
+      this.showVideo = false; // Oculta el video si está visible
+
+      setTimeout(() => {
+        const section = document.querySelector(`#${sectionId}`);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
     }
 
 }

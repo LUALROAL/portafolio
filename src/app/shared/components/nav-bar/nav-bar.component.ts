@@ -15,10 +15,10 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() {
     this.hoverSound = new Audio('../../../../assets/audio/hover.mp3');
-    this.hoverSound.volume = 0.3;
+    this.hoverSound.volume = 1;
 
     this.clickSound = new Audio('../../../../assets/audio/buttonsound.mp3');
-    this.clickSound.volume = 0.3;
+    this.clickSound.volume = 1;
     this.addHoverSoundToLinks();
   }
 
