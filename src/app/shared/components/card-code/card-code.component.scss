@@ -13,7 +13,7 @@ $corner-offset: -40px;
 $corner-symbol: '+';
 $corner-font-size: 24px;
 
-// Mixins - Definirlos ANTES de usarlos
+// Mixins
 @mixin card-face-styles {
   position: absolute;
   width: 100%;
@@ -23,10 +23,11 @@ $corner-font-size: 24px;
   justify-content: center;
   margin: auto;
   border-radius: 5px;
-  box-shadow: 0 1.5rem 4rem rgba($black-dark, 0.4); // Cambiado $black por $black-dark
-  transition: $transition;
+  box-shadow: 0 1.5rem 4rem rgba($black-dark, 0.4);
+  transition: transform $transition, box-shadow $transition;
   backface-visibility: hidden;
   overflow: hidden;
+  transform-style: preserve-3d;
 }
 
 @mixin corner-decoration {
@@ -39,9 +40,12 @@ $corner-font-size: 24px;
   z-index: 1;
 
   &:after {
-    z-index: 2;
+    content: $corner-symbol;
+    position: absolute;
     top: 0;
     right: 10px;
+    font-size: $corner-font-size;
+    z-index: 2;
   }
 }
 
@@ -50,6 +54,7 @@ code {
   font-family: "Lucida Console", Monaco, monospace;
   font-size: 14px;
   color: $white;
+  padding: 2rem;
 }
 
 // Componente Card
@@ -58,6 +63,12 @@ code {
   width: $card-width;
   height: $card-height;
   perspective: 150rem;
+  cursor: pointer;
+  transition: transform $transition;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 
   // Estilos compartidos front/back
   &-front,
@@ -71,14 +82,13 @@ code {
 
     &:after {
       @include corner-decoration;
-      content: $corner-symbol;
-      font-size: $corner-font-size;
     }
   }
 
   // Lado frontal
   &-front {
     background: linear-gradient(45deg, $black-dark, $black-light);
+    transform: rotateY(0deg);
 
     &:after {
       color: c.adjust($black-light, $lightness: -6%);
@@ -88,22 +98,20 @@ code {
   // Lado trasero
   &-back {
     background: linear-gradient(-45deg, $black-dark, $black-light);
-    transform: rotateX(180deg);
+    transform: rotateY(180deg);
 
     &:after {
       color: c.adjust($black-light, $lightness: -15%);
     }
   }
 
-  // Efectos hover
-  &:hover {
-    &-front {
-      transform: rotateX(-180deg);
-    }
+  // Efecto de volteo al hacer hover
+  &:hover &-front {
+    transform: rotateY(180deg);
+  }
 
-    &-back {
-      transform: rotateX(0deg);
-    }
+  &:hover &-back {
+    transform: rotateY(360deg);
   }
 
   // Números de línea
