@@ -1,3 +1,8 @@
+@use '../../../styles/variables.scss' as *;
+@use "sass:color";
+
+
+// Variables de color (si no están en variables.scss)
 $gray-light: #86868b;
 $gray-dark: #2b2b2b;
 $gray-darker: #131313;
@@ -5,68 +10,60 @@ $blue-primary: #1561f0;
 $green-primary: #0f0;
 $white: #fff;
 
-.container-skills {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  // box-shadow: $gray-light 0px 5px 15px;
-  width: 100%;
-  .title-skills{
-    font-family: 'Courier New', Courier, monospace;
-      font-size: 3rem;
-      text-shadow: 3px 3px 5px $gray-light;
-      font-weight: bold;
-      @keyframes neonGlowTerminal {
-        0% {
-          text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
-        }
-        50% {
-          text-shadow: 0 0 10px $green-primary, 0 0 20px $gray-light,
-            0 0 30px $gray-light;
-        }
-        100% {
-          text-shadow: 0 0 5px $gray-light, 0 0 10px $gray-light;
-        }
-      }
-      color: $white !important;
-      text-shadow: 0 0 5px $gray-light, 0 0 10px $gray-light;
-      animation: neonGlowTerminal 1.5s infinite alternate;
-}
-.skills-list{
-  .skills-card-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    cursor: pointer;
-
-    @keyframes neonGlowTerminal {
-      0% {
-        text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
-      }
-      50% {
-        text-shadow: 0 0 10px $green-primary, 0 0 20px $gray-light,
-          0 0 30px $green-primary;
-      }
-      100% {
-        text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
-      }
-    }
-    color: $white !important;
+// Animaciones compartidas
+@keyframes neonGlowTerminal {
+  0%, 100% {
     text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
-    // animation: neonGlowTerminal 1.5s infinite alternate;
-    font-family: 'Courier New', Courier, monospace;
-
-    .skill-card {
-      background: $gray-dark;
-      transition: transform 0.3s ease-in-out;
-      &:hover {
-        animation: neonGlowTerminal 1.5s infinite alternate;
-        transform: scale(1.05);
-        color: $white;
-        background: $gray-darker;
-        font-size: 1.1rem;
-        font-weight: bold;
-      }
-    }
+  }
+  50% {
+    text-shadow: 0 0 10px $green-primary, 0 0 20px $gray-light, 0 0 30px $green-primary;
   }
 }
 
+@keyframes titleNeonGlow {
+  0%, 100% {
+    text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
+  }
+  50% {
+    text-shadow: 0 0 10px $green-primary, 0 0 20px $gray-light, 0 0 30px $gray-light;
+  }
+}
+
+.container-skills {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 100%;
+
+  .title-skills {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 3rem;
+    font-weight: bold;
+    color: $white !important;
+    text-shadow: 0 0 5px $gray-light, 0 0 10px $gray-light;
+    animation: titleNeonGlow 1.5s infinite alternate;
+  }
+
+  .skills-list {
+    .skills-card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      cursor: pointer;
+      font-family: 'Courier New', Courier, monospace;
+      color: $white !important;
+      text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
+
+      .skill-card {
+        background: $gray-dark;
+        transition: transform 0.3s ease-in-out;
+
+        &:hover {
+          animation: neonGlowTerminal 1.5s infinite alternate;
+          transform: scale(1.05);
+          background: $gray-darker;
+          font-size: 1.1rem;
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }
