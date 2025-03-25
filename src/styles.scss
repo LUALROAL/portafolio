@@ -431,6 +431,7 @@
           transform: translate(-50%, -50%);
           z-index: 9999;
           width: 100%;
+          font-size: 20px;
 
           .command::before {
             content: "";
@@ -442,6 +443,7 @@
             white-space: pre-line;
             display: block;
             text-align: center;
+            margin-right: 10px;
           }
         }
       }
@@ -464,6 +466,7 @@
       height: auto;
       font-size: 0.9rem;
       padding: 0.4rem 1rem;
+      margin-right: 100px;
     }
   }
 }
