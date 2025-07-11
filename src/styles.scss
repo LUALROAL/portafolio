@@ -1,13 +1,16 @@
 @use '../src/styles/variables.scss' as *;
 @use "sass:color";
+
 // Animaciones compartidas
 @keyframes neonGlow {
   0% {
     text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
   }
+
   50% {
     text-shadow: 0 0 10px $green-primary, 0 0 20px $green-primary, 0 0 30px $green-primary;
   }
+
   100% {
     text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
   }
@@ -17,6 +20,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -27,6 +31,7 @@
     opacity: 0;
     transform: scale(0.8);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -43,6 +48,7 @@
   from {
     width: 0;
   }
+
   to {
     width: 100%;
   }
@@ -133,9 +139,9 @@
 
     &:nth-child(1) {
       box-shadow: -7px -7px 20px 0px #fff9,
-                 -4px -4px 5px 0px #fff9,
-                 7px 7px 20px 0px #0002,
-                 4px 4px 5px 0px #0001;
+        -4px -4px 5px 0px #fff9,
+        7px 7px 20px 0px #0002,
+        4px 4px 5px 0px #0001;
       transform: rotateX(90deg);
       transform-origin: 50% 50% -20px;
     }
@@ -161,13 +167,11 @@
 // Navbar
 .nav-bar-container {
   padding: 1rem 3rem !important;
-  background: linear-gradient(
-    135deg,
-    $gray-darker 0%,
-    color.adjust($gray-darker, $lightness: 10%) 25%,
-    $gray-dark 50%,
-    color.adjust($gray-darker, $lightness: -10%) 100%
-  );
+  background: linear-gradient(135deg,
+      $gray-darker 0%,
+      color.adjust($gray-darker, $lightness: 10%) 25%,
+      $gray-dark 50%,
+      color.adjust($gray-darker, $lightness: -10%) 100%);
   display: flex;
 
   .nav-bar-right {
@@ -195,12 +199,15 @@
         &.social-linkedin:hover {
           color: #0077b5 !important;
         }
+
         &.social-github:hover {
           color: #fff !important;
         }
+
         &.social-whatsapp:hover {
           color: #25d366 !important;
         }
+
         &.social-instagram:hover {
           color: #e1306c !important;
         }
@@ -281,10 +288,10 @@
     font-size: 4.5rem;
     color: $green-primary;
     text-shadow: 0 0 5px $green-primary,
-                0 0 10px $green-primary,
-                0 0 20px $green-primary,
-                0 0 40px $green-primary,
-                0 0 80px $green-primary;
+      0 0 10px $green-primary,
+      0 0 20px $green-primary,
+      0 0 40px $green-primary,
+      0 0 80px $green-primary;
     background: transparent;
   }
 }
@@ -305,6 +312,15 @@
       border-radius: 50%;
       width: 200px;
       z-index: 9999;
+      object-fit: cover !important;
+      height: 220px;
+      opacity: calc(1 - (var(--scroll) / 1000));
+      transition: opacity 0.5s ease-in-out;
+      animation: fadeInFromCenter 3s ease-out;
+      filter: brightness(0.9) contrast(100%) hue-rotate(0deg) saturate(30%);
+      box-shadow: 0 0 10px $green-primary, 0 0 20px $green-primary,
+        0 0 30px $green-primary, 0 0 40px $green-primary;
+        margin-bottom: 30px;
     }
 
     .name {
@@ -354,10 +370,10 @@
       font-size: 2rem;
       color: $white;
       text-shadow: 0 0 5px $gray-light,
-                  0 0 10px $gray-light,
-                  0 0 20px $gray-light,
-                  0 0 40px $gray-light,
-                  0 0 80px $green-primary;
+        0 0 10px $gray-light,
+        0 0 20px $gray-light,
+        0 0 40px $gray-light,
+        0 0 80px $green-primary;
     }
 
     .about-description {
@@ -366,10 +382,10 @@
       line-height: 1.5;
       font-weight: bold;
       text-shadow: 0 0 5px $gray-light,
-                  0 0 10px $gray-light,
-                  0 0 20px $gray-light,
-                  0 0 40px $gray-light,
-                  0 0 80px $green-primary;
+        0 0 10px $gray-light,
+        0 0 20px $gray-light,
+        0 0 40px $gray-light,
+        0 0 80px $green-primary;
     }
   }
 }
