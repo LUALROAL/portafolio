@@ -4,7 +4,6 @@
   position: absolute;
   left: 20vw;
   top:20vh;
-  background-color: aqua;
   perspective: 1000px;
 }
 
@@ -27,6 +26,7 @@
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: normal;
+  margin-top: 50px !important ;
 }
 .carousel:hover{
   animation-duration: 6s;
@@ -62,4 +62,10 @@
   #container-frontend {
     top:75vh;
   }
+@media (max-width: 644px) {
+  .carousel {
+    margin-top: 30px !important;
+  }
+}
+
 }
