@@ -7,7 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:portafolio": "node dist/portafolio/server/server.mjs"
+    "serve:ssr:portafolio": "node dist/portafolio/server/server.mjs",
+    "build:ssr": "ng build && ng run portafolio:server",
+    "serve:ssr": "node dist/portafolio/server/main.js",
+    "dev:ssr": "ng run portafolio:serve-ssr"
   },
   "private": true,
   "dependencies": {
