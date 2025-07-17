@@ -45,4 +45,17 @@ export class NavBarComponent implements OnInit {
     this.clickSound.currentTime = 0; // Reinicia el sonido
     this.clickSound.play().catch(() => console.log('Autoplay bloqueado'));
   }
+playSoundAndRedirect() {
+  this.clickSound.currentTime = 0;
+  this.clickSound.play().then(() => {
+    setTimeout(() => {
+      window.open('https://lualroal.github.io/', '_blank');
+    }, 500); // espera medio segundo (ajustable)
+  }).catch(() => {
+    console.log('Autoplay bloqueado');
+    window.open('https://lualroal.github.io/', '_blank');
+  });
+}
+
+
 }
