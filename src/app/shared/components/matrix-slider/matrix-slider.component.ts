@@ -76,4 +76,13 @@ export class MatrixSliderComponent implements OnInit, OnDestroy {
   prevSlide() {
     this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
   }
+
+goSite(): void {
+  // URL de tu portafolio en GitHub Pages
+  const url = 'https://x12551839.github.io/Portafolio/';
+
+  // Abre en una nueva pestaña
+  window.open(url, '_blank');
+}
+
 }
