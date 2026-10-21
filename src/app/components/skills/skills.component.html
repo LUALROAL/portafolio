@@ -4,64 +4,14 @@
   <app-carrosell></app-carrosell>
 
   <div class="row g-4 skills-list">
-
-    <!-- Desarrollo Front-End -->
-    <div class="col-12 col-md-4 skills-card-container">
-      <div class="skill-card p-4 shadow rounded">
-        <i class="bi bi-code-slash display-4 text-primary"></i>
-        <h4 class="mt-3">Desarrollo Front-End</h4>
-        <p>Experiencia en <strong>Angular, WordPress, TypeScript y JavaScript (ES6+)</strong>. Creación de interfaces modernas, dinámicas y optimizadas con <strong>SCSS, Material Design, bootstrap</strong>.</p>
-      </div>
-    </div>
-
-    <!-- Administración de Servidores -->
-    <div class="col-12 col-md-4 skills-card-container">
-      <div class="skill-card p-4 shadow rounded">
-        <i class="bi bi-server display-4 text-danger"></i>
-        <h4 class="mt-3">Administración de Servidores</h4>
-        <p>Experiencia en <strong>Linux (AlmaLinux, Ubuntu)</strong>. Configuración y seguridad de servidores con <strong>Apache, SSL y VPNs</strong>.</p>
-      </div>
-    </div>
-
-      <!-- Optimización y Escalabilidad -->
-      <div class="col-12 col-md-4 skills-card-container">
-        <div class="skill-card p-4 shadow rounded">
-          <i class="bi bi-speedometer display-4 text-secondary"></i>
-          <h4 class="mt-3">Optimización y Escalabilidad</h4>
-          <p>Implementación de <strong>Lazy Loading, Change Detection y Virtual Scroll</strong> para mejorar el rendimiento. Desarrollo de aplicaciones modulares y escalables.</p>
-        </div>
-      </div>
-
-    <!-- Pruebas Automatizadas -->
-    <div class="col-12 col-md-4 skills-card-container">
-      <div class="skill-card p-4 shadow rounded">
-        <i class="bi bi-bug display-4 text-warning"></i>
-        <h4 class="mt-3">Pruebas Automatizadas</h4>
-        <p>Desarrollo de tests con <strong>Playwright</strong>. Garantizando estabilidad y confiabilidad en el código.</p>
-      </div>
-    </div>
-
-
-<!-- HABILIDAD blanda -->
-<div class="col-12 col-md-4 skills-card-container">
-  <div class="skill-card p-4 shadow rounded">
-    <i class="bi bi-lightbulb display-4 text-light"></i>
-    <h4 class="mt-3">Autogestión y Aprendizaje Continuo</h4>
-    <p>Comprometido con la mejora constante, explorando nuevas tecnologías y metodologías para optimizar el desarrollo de software y la administración de sistemas.</p>
-  </div>
-</div>
-
-
-    <!-- Control de Versiones y DevOps -->
-    <div class="col-12 col-md-4 skills-card-container">
-      <div class="skill-card p-4 shadow rounded">
-        <i class="bi bi-git display-4 text-secondary"></i>
-        <h4 class="mt-3">Control de Versiones y DevOps</h4>
-        <p>Manejo de <strong>Git & GitHub</strong>. Experiencia en <strong>Docker</strong> y automatización de despliegues.</p>
-      </div>
-    </div>
-
-
-
+    @for (card of cards; track card.title) {
+      <app-skill-card
+        class="col-12 col-md-4"
+        [icon]="card.icon"
+        [iconTone]="card.iconTone"
+        [title]="card.title"
+        [body]="card.body"
+        [link]="card.link" />
+    }
   </div>
 </div>

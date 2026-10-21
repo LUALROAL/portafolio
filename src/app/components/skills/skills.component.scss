@@ -1,8 +1,9 @@
 @use '../../../styles/variables.scss' as *;
-@use "sass:color";
+@use '../../../styles/_section-cards.scss' as section;
 
+@include section.section-cards($white-smoke, 'neonGlowTerminal');
 
-// Animaciones compartidas
+// Animación del título de la sección.
 @keyframes neonGlowTerminal {
   0% {
     text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
@@ -12,58 +13,5 @@
   }
   100% {
     text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
-  }
-}
-
-.container-skills {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  width: 100%;
-
-  .title-skills {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 3rem;
-    font-weight: bold;
-    color: $white !important;
-    text-shadow: 0 0 5px $gray-light, 0 0 10px $gray-light;
-    animation: neonGlowTerminal 1.5s infinite alternate;
-
-    // Mover keyframes fuera del selector
-    @keyframes titleNeonGlow {
-      0% {
-        text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
-      }
-      50% {
-        text-shadow: 0 0 10px $green-primary, 0 0 20px $gray-light, 0 0 30px $gray-light;
-      }
-      100% {
-        text-shadow: 0 0 5px $gray-light, 0 0 10px $gray-light;
-      }
-    }
-  }
-
-  .skills-list {
-    .skills-card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      cursor: pointer;
-      font-family: 'Courier New', Courier, monospace;
-      color: $white !important;
-      text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
-
-      .skill-card {
-        background: $gray-dark;
-        transition: transform 0.3s ease-in-out;
-
-        &:hover {
-          animation: neonGlowTerminal 1.5s infinite alternate;
-          transform: scale(1.05);
-          color: $white;
-          background: $gray-darker;
-          font-size: 1.1rem;
-          font-weight: bold;
-        }
-      }
-    }
   }
 }

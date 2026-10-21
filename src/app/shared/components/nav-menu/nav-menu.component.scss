@@ -45,7 +45,6 @@
     animation: neonGlow 1.5s infinite alternate, radioactivePulse 2s infinite ease-in-out;
      width: $size2;
      height: $size2;
-     border-radius: 100%;
      display: flex;
      justify-content: center;
      align-items: center;
@@ -189,17 +188,7 @@
              }
           }
         }
-     }
-  }
+      }
+   }
 }
-
-
-
-
-@mixin sm {
-  @media screen and (max-width: 799px) {
-     @content;
-  }
-}
-
 

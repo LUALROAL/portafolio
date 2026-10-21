@@ -1,5 +1,6 @@
-// @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-@use '../../../../styles/variables.scss'as *;
+@use '../../../../styles/variables.scss' as *;
+
+$slider-height: 600px;
 
 @keyframes fadeIn {
   from {
@@ -9,11 +10,12 @@
     opacity: 1;
   }
 }
+
 .matrix-slider {
   position: relative;
   width: 80vw;
   margin: auto;
-  height: 600px;
+  height: $slider-height;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.141);
   box-shadow: rgba(46, 109, 10, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
@@ -27,9 +29,6 @@
     opacity: 0; /* Comienza invisible */
     animation: fadeIn 10s ease-in-out forwards;
   }
-
-
-
 
   .slider-content {
     position: relative;
@@ -46,13 +45,11 @@
       text-align: center;
       font-size: 30px;
       font-family: 'Share Tech Mono', monospace;
-      // color: $gray-light;
       opacity: 0;
       transform: translateY(-20px);
       transition: opacity 1s ease, transform 1s ease;
-      color: $white !important;
+      color: $white-smoke !important;
       text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
-      animation: neonGlowTerminal 1.5s infinite alternate;
 
       &.active {
         opacity: 1;
@@ -66,30 +63,24 @@
     position: absolute;
     background: none;
     border: none;
-    color: #00ff00;
     font-size: 4em;
     font-weight: bolder;
     cursor: pointer;
     top: 50%;
     transform: translateY(-50%);
 
-    &.prev { left: 10px; }
-    &.next { right: 10px; }
-
     &:hover {
-      color: #33ff33!important;
+      color: $green-bright !important;
     }
 
     color: $green-primary !important;
     text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
-    animation: neonGlowTerminal 1.5s infinite alternate;
   }
 
   .bottom-buttons {
     display: flex;
     justify-content: center;
     gap: 12rem;
-    // margin-bottom: 50px;
     position: fixed;
     margin-top: 20%;
     margin-right: 18px;
@@ -123,7 +114,6 @@
         margin-right: 8px;
         &:hover {
           transform: rotate(0deg) scale(1.1);
-          // padding: 20px;
         }
       }
 
@@ -133,7 +123,6 @@
         border: 2px solid #0077ff;
         &:hover {
           transform: rotate(10deg) scale(1.1);
-          // padding: 20px;
         }
       }
     }
@@ -150,10 +139,6 @@
     .slider-btn {
       display: none;
     }
-    img{
-      // display: none;
-
-    }
     .bottom-buttons {
       gap: 7rem;
       .slider-btn {
@@ -167,11 +152,6 @@
 
 @media (max-width: 552px) {
   .matrix-slider {
-
-    img{
-      // display: none;
-    }
-
     .bottom-buttons {
       gap: 11rem;
       .slider-btn {
@@ -180,43 +160,21 @@
         font-size: 1.5em;
       }
     }
-
   }
 }
+
 @media (max-width: 375px) {
   .matrix-slider {
-
-    img{
-      // display: none;
+    img {
       width: 180%;
     }
-
-    // .bottom-buttons {
-    //   gap: 11rem;
-    //   .slider-btn {
-    //     margin-top: 55%;
-    //     display: block;
-    //     font-size: 1.5em;
-    //   }
-    // }
-
   }
 }
+
 @media (max-width: 340px) {
   .matrix-slider {
-
-
-
     .bottom-buttons {
       gap: 8rem;
-      .slider-btn {
-
-      }
     }
-
   }
 }
-
-
-
-

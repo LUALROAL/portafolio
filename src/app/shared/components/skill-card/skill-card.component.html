@@ -1,0 +1,5 @@
+<div class="skill-card p-4 shadow rounded">
+  <i class="bi bi-{{ icon() }} display-4 {{ iconTone() }}"></i>
+  <h4 class="mt-3">{{ title() }}@if (link(); as cardLink) { <a [href]="cardLink.href" [target]="cardLink.target ?? '_blank'" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right"></i></a>}</h4>
+  <p>@for (segment of body(); track $index) {@if (segment.strong) {<strong>{{ segment.text }}</strong>}@else {<ng-container>{{ segment.text }}</ng-container>}}</p>
+</div>

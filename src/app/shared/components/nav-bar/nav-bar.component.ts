@@ -1,61 +1,55 @@
-import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, Renderer2, inject } from '@angular/core';
+import { PORTFOLIO_URL } from '../../../core/site-links';
+import { SoundService } from '../../../services/audio/sound.service';
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.scss'
+  styleUrl: './nav-bar.component.scss',
 })
-export class NavBarComponent implements OnInit {
-  private hoverSound!: HTMLAudioElement;
-  private clickSound!: HTMLAudioElement;
+export class NavBarComponent implements OnInit, OnDestroy {
+  private readonly el = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly renderer = inject(Renderer2);
+  private readonly sound = inject(SoundService);
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  private redirectTimeout?: ReturnType<typeof setTimeout>;
 
-  ngOnInit() {
-    this.hoverSound = new Audio('../../../../assets/audio/hover.mp3');
-    this.hoverSound.volume = 1;
-
-    this.clickSound = new Audio('../../../../assets/audio/buttonsound.mp3');
-    this.clickSound.volume = 1;
+  ngOnInit(): void {
     this.addHoverSoundToLinks();
   }
 
+  ngOnDestroy(): void {
+    clearTimeout(this.redirectTimeout);
+  }
 
-  addHoverSoundToLinks() {
+  /** Sonido de hover para cada enlace de la barra de navegación. */
+  private addHoverSoundToLinks(): void {
     const links = this.el.nativeElement.querySelectorAll('a');
-    links.forEach((link: HTMLElement) => {
+    links.forEach((link: HTMLAnchorElement) => {
       this.renderer.listen(link, 'mouseenter', () => {
-        this.hoverSound.currentTime = 0; // Reiniciar audio
-        this.hoverSound.play().catch(err => console.log('Autoplay bloqueado', err));
+        void this.sound.play('hover');
       });
     });
   }
 
-  @HostListener('mouseenter', ['$event'])
-  playHoverSound(event: MouseEvent) {
-    if ((event.target as HTMLElement).tagName === 'A') {
-      this.hoverSound.currentTime = 0; // Reinicia el sonido si ya está reproduciéndose
-      this.hoverSound.play().catch(() => console.log('Autoplay bloqueado'));
-    }
+  playSound(): void {
+    void this.sound.play('click');
   }
 
-  playSound() {
-    this.clickSound.currentTime = 0; // Reinicia el sonido
-    this.clickSound.play().catch(() => console.log('Autoplay bloqueado'));
+  /** Reproduce el efecto y abre el portfolio en una pestaña nueva. */
+  playSoundAndRedirect(): void {
+    void this.sound.play('click').then((started) => {
+      if (started) {
+        this.redirectTimeout = setTimeout(() => this.openPortfolio(), 500);
+      } else {
+        // Autoplay bloqueado: no esperamos al sonido para no perder la acción.
+        this.openPortfolio();
+      }
+    });
   }
-playSoundAndRedirect() {
-  this.clickSound.currentTime = 0;
-  this.clickSound.play().then(() => {
-    setTimeout(() => {
-      window.open('https://lualroal.github.io/', '_blank');
-    }, 500); // espera medio segundo (ajustable)
-  }).catch(() => {
-    console.log('Autoplay bloqueado');
-    window.open('https://lualroal.github.io/', '_blank');
-  });
-}
 
-
+  private openPortfolio(): void {
+    window.open(PORTFOLIO_URL, '_blank', 'noopener');
+  }
 }

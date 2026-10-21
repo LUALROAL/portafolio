@@ -1,0 +1,33 @@
+@use '../../../../styles/variables.scss' as *;
+
+// Contenedor de la tarjeta (flex + centrado).
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  cursor: pointer;
+  font-family: $font-mono;
+  text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
+}
+
+.skill-card {
+  background: $gray-dark;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    animation: neonGlowTerminal 1.5s infinite alternate;
+    transform: scale(1.05);
+    background: $gray-darker;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+}
+
+@keyframes neonGlowTerminal {
+  0%, 100% {
+    text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
+  }
+  50% {
+    text-shadow: 0 0 10px $green-primary, 0 0 20px $gray-light, 0 0 30px $green-primary;
+  }
+}

@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { EMAIL } from '../../../core/site-links';
 
+/**
+ * Tarjeta con el "código" del perfil. Es puramente decorativa.
+ */
 @Component({
   selector: 'app-card-code',
   imports: [],
   templateUrl: './card-code.component.html',
-  styleUrl: './card-code.component.scss'
+  styleUrl: './card-code.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class CardCodeComponent {
-  curlyRight : string = '}';
-  curlyLeft : string = '{';
-  comma : string = ',';
-  correo: string = 'alejorodryguez@gmail.com';
+  readonly correo: string = EMAIL;
 }

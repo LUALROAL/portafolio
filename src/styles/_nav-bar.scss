@@ -1,0 +1,195 @@
+@use 'variables.scss' as *;
+@use 'sass:color';
+
+// Estilos base compartidos.
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+// Barra de navegación y botón "¡HOLA!".
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  padding: 10px 25px;
+  color: $green-primary !important;
+  font-family: $font-mono;
+  font-size: 1.5rem !important;
+  font-weight: 500;
+  background: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1),
+    4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
+  animation: neonGlow 1.5s infinite alternate;
+}
+
+.btn-12 {
+  position: relative;
+  right: 20px;
+  bottom: 20px;
+  border: none;
+  box-shadow: none;
+  width: 130px;
+  height: 40px;
+  line-height: 42px;
+  perspective: 230px;
+
+  span {
+    background: $gray-light;
+    position: absolute;
+    width: 130px;
+    height: 40px;
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+      7px 7px 20px 0px rgba(0, 0, 0, 0.1),
+      4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin: 0;
+    text-align: center;
+    box-sizing: border-box;
+    transition: all 0.3s;
+
+    &:nth-child(1) {
+      box-shadow: -7px -7px 20px 0px #fff9,
+        -4px -4px 5px 0px #fff9,
+        7px 7px 20px 0px #0002,
+        4px 4px 5px 0px #0001;
+      transform: rotateX(90deg);
+      transform-origin: 50% 50% -20px;
+    }
+
+    &:nth-child(2) {
+      transform: rotateX(0deg);
+      transform-origin: 50% 50% -20px;
+    }
+  }
+
+  &:hover span {
+    &:nth-child(1) {
+      transform: rotateX(0deg);
+    }
+
+    &:nth-child(2) {
+      color: transparent;
+      transform: rotateX(-90deg);
+    }
+  }
+}
+
+// Navbar
+.nav-bar-container {
+  padding: 1rem 3rem !important;
+  background: linear-gradient(135deg,
+      $gray-darker 0%,
+      color.adjust($gray-darker, $lightness: 10%) 25%,
+      $gray-dark 50%,
+      color.adjust($gray-darker, $lightness: -10%) 100%);
+  display: flex;
+
+  .nav-bar-right {
+    background: transparent;
+
+    .social-icons {
+      background-color: transparent;
+
+      a {
+        color: $green-primary !important;
+        text-decoration: none !important;
+        font-size: 2rem !important;
+        margin-right: 1rem;
+        animation: neonGlow 1.5s infinite alternate;
+
+        .bi {
+          background: transparent !important;
+          box-shadow: none !important;
+        }
+
+        &:hover {
+          transform: matrix(1.1, 0, 0, 1.1, 0, 0) !important;
+        }
+
+        &.social-linkedin:hover {
+          color: #0077b5 !important;
+        }
+
+        &.social-github:hover {
+          color: #fff !important;
+        }
+
+        &.social-whatsapp:hover {
+          color: #25d366 !important;
+        }
+
+        &.social-instagram:hover {
+          color: #e1306c !important;
+        }
+      }
+    }
+  }
+
+  .nav-bar-left {
+    background-color: transparent;
+
+    .navbar-brand {
+      background-color: transparent;
+
+      .logo {
+        width: 100px;
+        height: 100px;
+        background-color: transparent;
+      }
+    }
+
+    .test-logo {
+      background-color: transparent;
+      color: $green-primary;
+      font-family: $font-mono;
+      padding: 1rem;
+      border-radius: 8px;
+
+      h2 {
+        font-size: 1.9rem;
+        font-weight: bold;
+        text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      .command {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: transparent;
+
+        &::before {
+          content: "Portafolio$ ";
+          color: $green-primary;
+          font-weight: bold;
+        }
+      }
+
+      .typing {
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        background-color: transparent;
+        width: 0;
+        animation: typing 3s steps(20, end) forwards;
+
+        &::after {
+          content: "_";
+          display: inline-block;
+          animation: blink 0.8s infinite;
+          color: $green-primary;
+        }
+      }
+    }
+  }
+}

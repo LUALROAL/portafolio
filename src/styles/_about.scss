@@ -1,0 +1,95 @@
+@use 'variables.scss' as *;
+
+// About
+.about-container {
+  box-shadow: $shadow-card;
+  padding-top: 5%;
+  display: flex;
+  justify-content: center;
+
+  .qualification-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .face-img {
+      border-radius: 50%;
+      width: 200px;
+      z-index: 9999;
+      object-fit: cover !important;
+      height: 220px;
+      opacity: calc(1 - (var(--scroll) / 1000));
+      transition: opacity 0.5s ease-in-out;
+      animation: fadeInFromCenter 3s ease-out;
+      filter: brightness(0.9) contrast(100%) hue-rotate(0deg) saturate(30%);
+      box-shadow: 0 0 10px $green-primary, 0 0 20px $green-primary,
+        0 0 30px $green-primary, 0 0 40px $green-primary;
+      margin-bottom: 30px;
+    }
+
+    .name {
+      font-family: $font-mono;
+      font-size: 2rem;
+      font-weight: bold;
+      color: $green-primary !important;
+      text-shadow: 3px 3px 5px $gray-light, 0 0 5px $green-primary, 0 0 10px $green-primary;
+      animation: neonGlow 1.5s infinite alternate;
+      display: inline-block;
+    }
+
+    .qualification {
+      font-family: $font-mono;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: $green-primary !important;
+      text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
+      animation: neonGlow 1.5s infinite alternate;
+      display: inline-block;
+    }
+
+    p {
+      color: $green-primary;
+      font-family: $font-mono;
+      text-shadow: $shadow-card;
+
+      &::after {
+        content: "|";
+        display: inline-block;
+        animation: blink 0.8s infinite;
+        color: $green-primary;
+      }
+    }
+  }
+
+  .text-about {
+    max-width: 600px;
+    text-align: justify;
+    font-size: 1rem;
+    margin: 8% 0 0 5%;
+
+    .section-title {
+      font-family: $font-mono;
+      text-align: center;
+      margin-bottom: 1em;
+      font-size: 2rem;
+      color: $white-smoke;
+      text-shadow: 0 0 5px $gray-light,
+        0 0 10px $gray-light,
+        0 0 20px $gray-light,
+        0 0 40px $gray-light,
+        0 0 80px $green-primary;
+    }
+
+    .about-description {
+      color: $white-smoke;
+      font-size: 16px;
+      line-height: 1.5;
+      font-weight: bold;
+      text-shadow: 0 0 5px $gray-light,
+        0 0 10px $gray-light,
+        0 0 20px $gray-light,
+        0 0 40px $gray-light,
+        0 0 80px $green-primary;
+    }
+  }
+}

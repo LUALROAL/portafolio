@@ -1,0 +1,33 @@
+@use 'variables.scss' as *;
+
+/**
+ * Estilos compartidos por las secciones de tarjetas (Habilidades y Proyectos).
+ *
+ * Ambas secciones son visualmente idénticas salvo por dos valores:
+ *  - el color del texto (`$title-color`)
+ *  - la animación del título (`$title-animation`)
+ *
+ * @param $title-color     color del título y del cuerpo de las tarjetas
+ * @param $title-animation nombre de la animación del título (keyframes local del componente)
+ */
+@mixin section-cards($title-color, $title-animation) {
+  .container-skills {
+    box-shadow: $shadow-card;
+    width: 100%;
+
+    .title-skills {
+      font-family: $font-mono;
+      font-size: 3rem;
+      font-weight: bold;
+      color: $title-color !important;
+      text-shadow: 0 0 5px $gray-light, 0 0 10px $gray-light;
+      animation: $title-animation 1.5s infinite alternate;
+    }
+
+    .skills-list {
+      app-skill-card {
+        color: $title-color !important;
+      }
+    }
+  }
+}

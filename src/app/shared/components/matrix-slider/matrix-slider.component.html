@@ -1,21 +1,19 @@
-<div class="matrix-slider" >
+<div class="matrix-slider">
   <div class="slider-content">
-    <img src="../../../../assets/img/Matrix-y-morfeo-removebg-preview.png" alt="">
-    <div class="slider-item" *ngFor="let item of slides; let i = index" [class.active]="i === currentIndex">
-      <p>{{ item }}</p>
-    </div>
+    <img src="assets/img/Matrix-y-morfeo-removebg-preview.png" alt="">
+    @for (item of slides; track item; let i = $index) {
+      <div class="slider-item" [class.active]="i === currentIndex()">
+        <p>{{ item }}</p>
+      </div>
+    }
   </div>
   <div class="bottom-buttons">
     <button (click)="enterMatrix()" class="slider-btn"></button>
     <button (click)="goSite()" class="slider-btn"></button>
   </div>
-
-  <!-- <button (click)="prevSlide()" class="slider-btn prev">&lt;</button>
-  <button (click)="nextSlide()" class="slider-btn next">&gt;</button> -->
-
 </div>
 
 <audio controls autoplay loop style="display: none;">
-  <source src="../../../../assets/audio/ytmp3free.cc_the-matrix-score-suite-youtubemp3free.org.mp3" type="audio/mpeg">
+  <source src="assets/audio/ytmp3free.cc_the-matrix-score-suite-youtubemp3free.org.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>

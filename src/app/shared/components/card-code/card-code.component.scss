@@ -53,7 +53,7 @@ $corner-font-size: 24px;
 code {
   font-family: "Lucida Console", Monaco, monospace;
   font-size: 14px;
-  color: $white;
+  color: $white-smoke;
   padding: 2rem;
 }
 
@@ -77,7 +77,7 @@ code {
 
     &:before {
       @include corner-decoration;
-      background-color: rgba($white, 0.08);
+      background-color: rgba($white-smoke, 0.08);
     }
 
     &:after {
@@ -127,7 +127,7 @@ code {
     height: 100%;
     margin: 0;
     padding: 0 10px;
-    background-color: rgba($white, 0.03);
+    background-color: rgba($white-smoke, 0.03);
     font-size: 13px;
 
     > div {

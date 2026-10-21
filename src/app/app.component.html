@@ -1,28 +1,25 @@
+@if (!showContent() && !showVideo()) {
+  <app-matrix-background class="fade-in"></app-matrix-background>
+}
 
-<app-app-matrix-background  *ngIf="!showContent && !showVideo" class="fade-in"></app-app-matrix-background>
 <!-- Video de introducción (se muestra solo después de presionar el botón) -->
-<div *ngIf="showVideo" class="video-container fade-in">
-  <video autoplay muted playsinline (ended)="showVideo = false; showContent = true">
-    <source src="../assets/audio/matrix.mp4" type="video/mp4">
-    Tu navegador no soporta el video.
-  </video>
-</div>
+@if (showVideo()) {
+  <div class="video-container fade-in">
+    <video autoplay muted playsinline (ended)="showVideo.set(false); showContent.set(true)">
+      <source src="assets/audio/matrix.mp4" type="video/mp4">
+      Tu navegador no soporta el video.
+    </video>
+  </div>
+}
 
-
-<div *ngIf="showContent" class="fade-in">
-
-  <app-header id="header"></app-header>
-  <app-about  id="about"></app-about>
-  <app-skills id="skills"></app-skills>
-  <app-projects id="projects"></app-projects>
-<app-nav-menu></app-nav-menu>
-
-  <!-- <audio  #audioElement controls autoplay loop style="display: none;">
-    <source src="../../../../assets/audio/effec_sound.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio> -->
-</div>
+@if (showContent()) {
+  <div class="fade-in">
+    <app-header id="header"></app-header>
+    <app-about id="about"></app-about>
+    <app-skills id="skills"></app-skills>
+    <app-projects id="projects"></app-projects>
+    <app-nav-menu></app-nav-menu>
+  </div>
+}
 
 <router-outlet></router-outlet>
-
-

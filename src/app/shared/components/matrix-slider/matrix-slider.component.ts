@@ -1,88 +1,58 @@
-import { CommonModule } from '@angular/common';
-import { Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, NgZone, OnDestroy, OnInit, inject, signal } from '@angular/core';
+import { PORTFOLIO_PAGES_URL } from '../../../core/site-links';
 import { MatrixSliderService } from '../../../services/matrix/matrix-slider.service';
 
 @Component({
   selector: 'app-matrix-slider',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './matrix-slider.component.html',
-  styleUrl: './matrix-slider.component.scss'
+  styleUrl: './matrix-slider.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MatrixSliderComponent implements OnInit, OnDestroy {
-  @ViewChild('audioElement') audioElement!: ElementRef<HTMLAudioElement>;
-  slides: string[] = [
+  private readonly ngZone = inject(NgZone);
+  private readonly matrixSliderService = inject(MatrixSliderService);
+
+  readonly slides = [
     'The choice is yours 💊...',
     'Wake up, Neo...',
     'The Matrix has you...',
     'Follow the white rabbit.',
-    'Knock, knock, Neo.'
+    'Knock, knock, Neo.',
   ];
 
-  currentIndex = 0;
-  intervalId: any;
-  constructor(private ngZone: NgZone,
-    private matrixSliderService: MatrixSliderService) { }
+  readonly currentIndex = signal(0);
 
-  ngOnInit() {
+  private intervalId?: ReturnType<typeof setInterval>;
+
+  ngOnInit(): void {
     this.startAutoSlide();
   }
 
-
-  ngAfterViewInit() {
-  if (this.audioElement?.nativeElement) {
-    const audio = this.audioElement.nativeElement;
-    audio.volume = 0; // Inicia sin sonido
-    audio.play().catch(error => console.warn("Reproducción bloqueada", error));
-
-    let vol = 0;
-    const fadeAudio = setInterval(() => {
-      if (vol < 1) {
-        vol += 0.05; // Incrementa volumen gradualmente
-        audio.volume = vol;
-      } else {
-        clearInterval(fadeAudio);
-      }
-    }, 200); // Ajusta la velocidad del fade-in
-  }
-}
-
-
-  ngOnDestroy() {
-    if (this.intervalId) {
+  ngOnDestroy(): void {
+    if (this.intervalId !== undefined) {
       clearInterval(this.intervalId);
     }
   }
 
-  startAutoSlide() {
+  /** Cambia de frase cada 7 segundos. */
+  private startAutoSlide(): void {
     this.ngZone.runOutsideAngular(() => {
       this.intervalId = setInterval(() => {
-        this.ngZone.run(() => {
-          this.nextSlide();
-        });
-      }, 7000); // 🔹 Cambia cada 3 segundos
+        this.ngZone.run(() => this.nextSlide());
+      }, 7000);
     });
   }
 
-  enterMatrix() {
+  enterMatrix(): void {
     this.matrixSliderService.enterMatrix();
   }
 
-
-  nextSlide() {
-    this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+  nextSlide(): void {
+    this.currentIndex.update((index) => (index + 1) % this.slides.length);
   }
 
-  prevSlide() {
-    this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+  goSite(): void {
+    window.open(PORTFOLIO_PAGES_URL, '_blank', 'noopener');
   }
-
-goSite(): void {
-  // URL de tu portafolio en GitHub Pages
-  const url = 'https://x12551839.github.io/Portafolio/';
-
-  // Abre en una nueva pestaña
-  window.open(url, '_blank');
-}
-
 }

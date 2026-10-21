@@ -1,41 +1,13 @@
-import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
+/**
+ * Carrusel de logos de tecnologías. Es puramente visual: no necesita lógica.
+ */
 @Component({
   selector: 'app-carrosell',
   imports: [],
   templateUrl: './carrosell.component.html',
-  styleUrl: './carrosell.component.scss'
+  styleUrl: './carrosell.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CarrosellComponent {
-  private hoverSound!: HTMLAudioElement;
-
-  constructor(
-    private el: ElementRef, private renderer: Renderer2
-  ) {}
-
-  ngOnInit() {
-    this.hoverSound = new Audio('../../../../assets/audio/wheel-bicycle-30507.mp3');
-    this.hoverSound.volume = 0.3;
-    this.addHoverSoundToLinks();
-  }
-
-
-    addHoverSoundToLinks() {
-      const links = this.el.nativeElement.querySelectorAll('');
-      links.forEach((link: HTMLElement) => {
-        this.renderer.listen(link, 'mouseenter', () => {
-          this.hoverSound.currentTime = 0; // Reiniciar audio
-          this.hoverSound.play().catch(err => console.log('Autoplay bloqueado', err));
-        });
-      });
-    }
-
-    @HostListener('mouseenter', ['$event'])
-    playHoverSound(event: MouseEvent) {
-      if ((event.target as HTMLElement).tagName === '') {
-        this.hoverSound.currentTime = 0; // Reinicia el sonido si ya está reproduciéndose
-        this.hoverSound.play().catch(() => console.log('Autoplay bloqueado'));
-      }
-    }
-
-}
+export class CarrosellComponent {}
