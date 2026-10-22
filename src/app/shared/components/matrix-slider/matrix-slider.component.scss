@@ -18,17 +18,13 @@ $slider-height: 600px;
   height: $slider-height;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.141);
-  box-shadow: rgba(46, 109, 10, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  box-shadow: rgba(46, 109, 10, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
-  img {
-    opacity: 0; /* Comienza invisible */
-    animation: fadeIn 10s ease-in-out forwards;
-  }
 
   .slider-content {
     position: relative;
@@ -37,6 +33,23 @@ $slider-height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .morpheus-stage {
+      position: relative;
+      flex: 0 0 auto;
+      width: min(100%, 666px);
+      line-height: 0;
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        user-select: none;
+        pointer-events: none;
+        opacity: 0;
+        animation: fadeIn 10s ease-in-out forwards;
+      }
+    }
 
     .slider-item {
       font-weight: bold;
@@ -59,105 +72,90 @@ $slider-height: 600px;
     }
   }
 
-  .slider-btn {
+  // Píldoras alineadas a las manos de la imagen.
+  .pill {
     position: absolute;
-    background: none;
-    border: none;
-    font-size: 4em;
-    font-weight: bolder;
+    width: 3%;
+    min-width: 18px;
+    max-width: 24px;
+    aspect-ratio: 1;
+    padding: 0;
+    border-radius: 50%;
+    border: 2px solid;
     cursor: pointer;
-    top: 50%;
-    transform: translateY(-50%);
+    transform: translate(-50%, -50%);
+    animation: fadeIn 10s ease-in-out forwards;
+    transition: filter 0.2s ease, box-shadow 0.2s ease;
 
-    &:hover {
-      color: $green-bright !important;
+    // Área táctil más grande que la píldora visible.
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -13px;
+      border-radius: 50%;
     }
 
-    color: $green-primary !important;
-    text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
-  }
+    &:hover,
+    &:focus-visible {
+      filter: brightness(1.3);
+    }
 
-  .bottom-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 12rem;
-    position: fixed;
-    margin-top: 20%;
-    margin-right: 18px;
+    &:focus-visible {
+      outline: 2px solid $white-smoke;
+      outline-offset: 4px;
+    }
 
-    .slider-btn {
-      animation: fadeIn 5s ease-in-out forwards;
-      position: relative;
-      font-size: 1.5em;
-      top: auto;
-      transform: none;
-      padding: 0.3em 0.8em;
-      border: none;
-      border-radius: 50px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      box-shadow: inset 0px -4px 6px rgba(0, 0, 0, 0.3), 0px 4px 10px rgba(0, 0, 0, 0.5);
+    &.pill-red {
+      left: 29.35%;
+      top: 83.2%;
+      background: radial-gradient(circle, #ff2a2a 15%, #8a0000 65%, #330000 100%);
+      border-color: #ff4444;
+      box-shadow: 0 0 8px rgba(255, 68, 68, 0.8),
+        0 0 18px rgba(204, 0, 0, 0.45);
 
-      &:hover {
-        transform: scale(1.1);
-        box-shadow: inset 0px -6px 8px rgba(0, 0, 0, 0.4), 0px 6px 12px rgba(0, 0, 0, 0.6);
+      &:hover,
+      &:focus-visible {
+        box-shadow: 0 0 12px rgba(255, 68, 68, 0.95),
+          0 0 28px rgba(204, 0, 0, 0.6);
       }
+    }
 
-      &:nth-child(1) {
-        transform: rotate(-50deg) scale(1.1);
-        background: radial-gradient(circle, #cc0000 10%, #330000 80%);
-        border: 2px solid #ff4444;
-        margin-right: 8px;
-        &:hover {
-          transform: rotate(0deg) scale(1.1);
-        }
-      }
+    &.pill-blue {
+      left: 67.33%;
+      top: 83.96%;
+      background: radial-gradient(circle, #2a7bff 15%, #0033a0 65%, #001133 100%);
+      border-color: #0077ff;
+      box-shadow: 0 0 8px rgba(0, 119, 255, 0.8),
+        0 0 18px rgba(0, 68, 204, 0.45);
 
-      &:nth-child(2) {
-        transform: rotate(50deg) scale(1.1);
-        background: radial-gradient(circle, #0044cc 10%, #001133 80%);
-        border: 2px solid #0077ff;
-        &:hover {
-          transform: rotate(10deg) scale(1.1);
-        }
+      &:hover,
+      &:focus-visible {
+        box-shadow: 0 0 12px rgba(0, 119, 255, 0.95),
+          0 0 28px rgba(0, 68, 204, 0.6);
       }
     }
   }
 }
 
 @keyframes matrixRain {
-  0% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
-  100% { text-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33; }
-}
-
-@media (max-width: 537px) {
-  .matrix-slider {
-    .slider-btn {
-      display: none;
-    }
-    .bottom-buttons {
-      gap: 7rem;
-      .slider-btn {
-        margin-top: 50%;
-        display: block;
-        font-size: 1.5em;
-      }
-    }
+  0% {
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+  }
+  100% {
+    text-shadow: 0 0 10px #33ff33, 0 0 20px #33ff33;
   }
 }
 
-@media (max-width: 552px) {
+@media (max-width: 760px) {
   .matrix-slider {
-    .bottom-buttons {
-      gap: 11rem;
-      .slider-btn {
-        margin-top: 55%;
-        display: block;
-        font-size: 1.5em;
+    .slider-content {
+      .morpheus-stage {
+        width: 130%;
+      }
+
+      .slider-item {
+        padding: 0 1rem;
+        font-size: 1.25rem;
       }
     }
   }
@@ -165,16 +163,8 @@ $slider-height: 600px;
 
 @media (max-width: 375px) {
   .matrix-slider {
-    img {
-      width: 180%;
-    }
-  }
-}
-
-@media (max-width: 340px) {
-  .matrix-slider {
-    .bottom-buttons {
-      gap: 8rem;
+    .slider-content .morpheus-stage {
+      width: 140%;
     }
   }
 }

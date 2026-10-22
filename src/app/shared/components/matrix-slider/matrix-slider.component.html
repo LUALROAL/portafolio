@@ -1,15 +1,27 @@
 <div class="matrix-slider">
   <div class="slider-content">
-    <img src="assets/img/Matrix-y-morfeo-removebg-preview.png" alt="">
+    <div class="morpheus-stage">
+      <img src="assets/img/Matrix-y-morfeo-removebg-preview.png" alt="Morpheus ofreciendo la píldora roja y la píldora azul">
+      <button
+        type="button"
+        class="pill pill-red"
+        (click)="enterMatrix()"
+        aria-label="Tomar la píldora roja y entrar al portafolio"
+        title="Entrar al portafolio"
+      ></button>
+      <button
+        type="button"
+        class="pill pill-blue"
+        (click)="goSite()"
+        aria-label="Tomar la píldora azul e ir al sitio principal"
+        title="Ir al sitio principal"
+      ></button>
+    </div>
     @for (item of slides; track item; let i = $index) {
       <div class="slider-item" [class.active]="i === currentIndex()">
         <p>{{ item }}</p>
       </div>
     }
-  </div>
-  <div class="bottom-buttons">
-    <button (click)="enterMatrix()" class="slider-btn"></button>
-    <button (click)="goSite()" class="slider-btn"></button>
   </div>
 </div>
 
