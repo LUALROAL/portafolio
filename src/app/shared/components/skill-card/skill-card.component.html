@@ -1,5 +1,29 @@
 <div class="skill-card p-4 shadow rounded">
+  @if (status(); as cardStatus) {
+    <span class="status-badge">{{ cardStatus }}</span>
+  }
+
   <i class="bi bi-{{ icon() }} display-4 {{ iconTone() }}"></i>
-  <h4 class="mt-3">{{ title() }}@if (link(); as cardLink) { <a [href]="cardLink.href" [target]="cardLink.target ?? '_blank'" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right"></i></a>}</h4>
-  <p>@for (segment of body(); track $index) {@if (segment.strong) {<strong>{{ segment.text }}</strong>}@else {<ng-container>{{ segment.text }}</ng-container>}}</p>
+  <h4 class="mt-3">{{ title() }}</h4>
+  <p>
+    @for (segment of body(); track $index) {
+      @if (segment.strong) {
+        <strong>{{ segment.text }}</strong>
+      } @else {
+        <ng-container>{{ segment.text }}</ng-container>
+      }
+    }
+  </p>
+
+  @if (link(); as cardLink) {
+    <a
+      class="card-link"
+      [href]="cardLink.href"
+      [target]="cardLink.target ?? '_blank'"
+      rel="noopener noreferrer"
+    >
+      {{ cardLink.label ?? 'Ver más' }}
+      <i class="bi bi-arrow-up-right"></i>
+    </a>
+  }
 </div>

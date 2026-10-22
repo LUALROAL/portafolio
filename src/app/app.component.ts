@@ -12,8 +12,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterOutlet } from '@angular/router';
 
 import { AboutComponent } from './components/about/about.component';
+import { ExperienceComponent } from './components/experience/experience.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { SkillsComponent } from './components/skills/skills.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 import { MatrixBackgroundComponent } from './shared/components/matrix-background/matrix-background.component';
 import { NavMenuComponent } from './shared/components/nav-menu/nav-menu.component';
 import { HeaderComponent } from './shared/components/header/header.component';
@@ -21,7 +23,7 @@ import { MatrixSliderService } from './services/matrix/matrix-slider.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, AboutComponent, SkillsComponent, ProjectsComponent, MatrixBackgroundComponent, NavMenuComponent],
+  imports: [RouterOutlet, HeaderComponent, AboutComponent, SkillsComponent, ExperienceComponent, ProjectsComponent, FooterComponent, MatrixBackgroundComponent, NavMenuComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

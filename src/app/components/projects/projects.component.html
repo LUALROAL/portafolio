@@ -1,15 +1,20 @@
 <div class="container-fluid container-skills text-center py-5">
-  <h2 class="mb-4 title-skills">Mis Proyectos</h2>
+  <h2 class="mb-2 title-skills">Mis Proyectos</h2>
+  <p class="skills-intro">
+    Proyectos reales, productos propios y experimentos. Cada tarjeta indica su
+    estado y, cuando está disponible, el enlace público.
+  </p>
 
-  <div class="row g-4 skills-list">
+  <div class="row g-4 skills-list justify-content-center">
     @for (card of cards; track card.title) {
       <app-skill-card
-        class="col-12 col-md-4"
+        class="col-12 col-md-6 col-lg-4"
         [icon]="card.icon"
         [iconTone]="card.iconTone"
         [title]="card.title"
         [body]="card.body"
-        [link]="card.link" />
+        [link]="card.link"
+        [status]="card.status" />
     }
   </div>
 </div>

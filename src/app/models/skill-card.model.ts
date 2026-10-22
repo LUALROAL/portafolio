@@ -7,10 +7,11 @@ export interface SkillSegment {
   readonly strong?: boolean;
 }
 
-/** Enlace opcional asociado al título de una tarjeta. */
+/** Enlace opcional asociado a una tarjeta. */
 export interface SkillCardLink {
   readonly href: string;
   readonly target?: string;
+  readonly label?: string;
 }
 
 /** Contenido completo de una tarjeta de habilidad o proyecto. */
@@ -20,4 +21,8 @@ export interface SkillCard {
   readonly title: string;
   readonly body: readonly SkillSegment[];
   readonly link?: SkillCardLink;
+  /** Tarjeta de mayor jerarquía visual (habilidad principal). */
+  readonly featured?: boolean;
+  /** Estado del proyecto: "En desarrollo", "Demo publicada", etc. */
+  readonly status?: string;
 }

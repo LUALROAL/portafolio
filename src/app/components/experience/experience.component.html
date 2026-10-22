@@ -1,0 +1,55 @@
+<section class="container-fluid experience-container py-5">
+  <h2 class="title-experience text-center">Experiencia &amp; Formación</h2>
+  <p class="experience-intro text-center">
+    Trayectoria profesional, colaboraciones independientes y formación
+    académica que complementa la práctica.
+  </p>
+
+  <div class="row g-4 justify-content-center">
+    <div class="col-12 col-lg-7">
+      <h3 class="group-title">
+        <i class="bi bi-briefcase"></i>
+        Experiencia profesional
+      </h3>
+
+      @for (item of experience; track item.role) {
+        <article class="timeline-item">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-content">
+            <div class="timeline-heading">
+              <h4>{{ item.role }}</h4>
+              <span class="period">{{ item.period }}</span>
+            </div>
+            <p class="context">{{ item.context }}</p>
+            <ul class="responsibilities">
+              @for (responsibility of item.responsibilities; track responsibility) {
+                <li>{{ responsibility }}</li>
+              }
+            </ul>
+            <div class="tech-tags" aria-label="Tecnologías utilizadas">
+              @for (technology of item.technologies; track technology) {
+                <span>{{ technology }}</span>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+
+    <div class="col-12 col-lg-5">
+      <h3 class="group-title">
+        <i class="bi bi-mortarboard"></i>
+        Formación
+      </h3>
+
+      @for (item of education; track item.title) {
+        <article class="education-card">
+          <i class="bi bi-{{ item.icon }} education-icon"></i>
+          <h4>{{ item.title }}</h4>
+          <p class="institution">{{ item.institution }}</p>
+          <p class="education-note">{{ item.note }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>

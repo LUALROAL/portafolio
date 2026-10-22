@@ -1,3 +1,45 @@
-<div class="banner-container d-flex justify-content-center align-items-center h-75">
-  <h2 class="title-banner"> <i class="bi bi-terminal glowing-terminal"></i> {{name}}</h2>
+<div class="banner-container d-flex justify-content-center align-items-center">
+  <div class="hero-terminal text-center">
+    <p class="hero-prompt">
+      <i class="bi bi-terminal glowing-terminal"></i>
+      alejandro&#64;portfolio:~$ whoami
+    </p>
+
+    <h1 class="title-banner">{{ name }}</h1>
+
+    <p class="hero-role">
+      <span class="hero-role-main">Analista y Desarrollador de Software</span>
+      <span class="hero-role-specialty">
+        Especializado en Frontend · Angular &amp; Ionic
+      </span>
+    </p>
+
+    <p class="hero-summary">
+      Más de cinco años desarrollando software, con especialización en frontend:
+      interfaces y aplicaciones web con Angular, TypeScript e Ionic. Experiencia
+      en proyectos profesionales, freelance y productos propios, con base
+      complementaria en backend y bases de datos.
+    </p>
+
+    <div class="hero-actions">
+      <a
+        class="hero-btn hero-btn-primary"
+        href="#projects"
+        (click)="scrollToSection('projects', $event)"
+      >
+        <i class="bi bi-folder2-open"></i>
+        Ver proyectos
+      </a>
+      <a class="hero-btn" [href]="emailLink">
+        <i class="bi bi-envelope"></i>
+        Contactarme
+      </a>
+    </div>
+
+    <ul class="hero-stack" aria-label="Tecnologías principales">
+      @for (technology of stack; track technology) {
+        <li>{{ technology }}</li>
+      }
+    </ul>
+  </div>
 </div>

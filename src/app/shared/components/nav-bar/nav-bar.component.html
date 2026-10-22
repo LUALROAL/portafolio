@@ -6,25 +6,21 @@
 
     <div class="test-logo ms-4">
       <h2 class="command">
-        <span class="typing">
-          Frontend
-          &
-          Server Management
-        </span>
+        <span class="typing">Desarrollador de Software</span>
+        <span class="role-specialty">Frontend · Angular & Ionic</span>
       </h2>
     </div>
   </div>
   <div class="nav-bar-right col d-flex justify-content-end">
     <div class="social-icons">
       <a (click)="playSound()" class="btn social-linkedin glowing-terminal"
-        href="https://www.linkedin.com/in/alejo-rodriguez/" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
-      <a (click)="playSound()" class="btn social-github" href="https://github.com/LUALROAL" target="_blank" rel="noopener noreferrer"><i
+        [href]="linkedinUrl" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+      <a (click)="playSound()" class="btn social-github" [href]="githubUrl" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i
           class="bi bi-github"></i></a>
-      <a (click)="playSound()" class="btn social-whatsapp glowing-box" href="https://lualroal.github.io/"
-        target="_blank" rel="noopener noreferrer"><i class="bi bi-globe"></i></a>
+      <a (click)="playSound()" class="btn social-whatsapp glowing-box" [href]="portfolioUrl"
+        target="_blank" rel="noopener noreferrer" aria-label="Portafolio"><i class="bi bi-globe"></i></a>
 
-      <a (click)="playSound()" class="btn social-gmail glowing-box" href="mailto:alejorodryguez@gmail.com"
-        target="_blank">
+      <a (click)="playSound()" class="btn social-gmail glowing-box" [href]="emailLink" aria-label="Correo electrónico">
         <i class="bi bi-envelope-fill"></i>
       </a>
 

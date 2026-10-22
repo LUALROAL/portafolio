@@ -1,19 +1,141 @@
 @use 'variables.scss' as *;
 
-// Banner
+// Banner / Hero
 .banner-container {
   background-color: transparent;
   position: relative;
+  min-height: 540px;
+  padding: 2.5rem 1rem;
+
+  .hero-terminal {
+    max-width: 920px;
+    width: 100%;
+  }
+
+  .hero-prompt {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: $font-mono;
+    font-size: 0.95rem;
+    color: $green-primary;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+    opacity: 0.85;
+    text-shadow: 0 0 6px $green-primary;
+  }
 
   .title-banner {
     font-family: $font-mono;
     font-size: 4.5rem;
     color: $green-primary;
+    line-height: 1.05;
+    margin-bottom: 0.75rem;
     text-shadow: 0 0 5px $green-primary,
       0 0 10px $green-primary,
       0 0 20px $green-primary,
       0 0 40px $green-primary,
       0 0 80px $green-primary;
     background: transparent;
+  }
+
+  .hero-role {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-family: $font-mono;
+    margin-bottom: 1.1rem;
+    text-shadow: 0 0 6px rgba($green-primary, 0.65);
+  }
+
+  .hero-role-main {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $white-smoke;
+  }
+
+  .hero-role-specialty {
+    font-size: 1rem;
+    font-weight: bold;
+    color: $green-primary;
+  }
+
+  .hero-summary {
+    max-width: 760px;
+    margin: 0 auto 1.75rem;
+    font-family: $font-mono;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: $white-smoke;
+    text-shadow: 0 0 8px rgba($green-primary, 0.35);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.35rem;
+    font-family: $font-mono;
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: $green-primary;
+    background: rgba($black-dark, 0.55);
+    border: 1px solid rgba($green-primary, 0.65);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: $black-dark;
+      background: $green-primary;
+      box-shadow: 0 0 10px $green-primary, 0 0 25px rgba($green-primary, 0.6);
+      text-shadow: none;
+    }
+  }
+
+  .hero-btn-primary {
+    color: $black-dark;
+    background: $green-primary;
+    box-shadow: 0 0 10px rgba($green-primary, 0.55);
+
+    &:hover,
+    &:focus-visible {
+      background: $green-bright;
+      box-shadow: 0 0 14px $green-primary, 0 0 35px rgba($green-primary, 0.75);
+    }
+  }
+
+  .hero-stack {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      padding: 0.15rem 0.6rem;
+      font-family: $font-mono;
+      font-size: 0.78rem;
+      color: rgba($white-smoke, 0.85);
+      border: 1px solid rgba($green-primary, 0.3);
+      border-radius: 3px;
+      background: rgba($gray-darker, 0.45);
+
+      &::before {
+        content: '$ ';
+        color: $green-primary;
+      }
+    }
   }
 }

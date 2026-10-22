@@ -1,75 +1,85 @@
 import { SkillCard } from '../models/skill-card.model';
 
 /**
- * Contenido de la sección "Mis Habilidades".
- * El orden de los fragmentos (`segments`) reproduce exactamente el texto
- * renderizado en el marcado original, incluidos los espacios.
+ * Contenido de la sección "Mis Habilidades", ordenado por jerarquía:
+ * especialidad frontend, desarrollo multiplataforma, entorno de trabajo,
+ * backend/bases de datos y apoyo con IA.
  */
 export const SKILLS_CARDS: readonly SkillCard[] = [
   {
     icon: 'code-slash',
     iconTone: 'text-primary',
-    title: 'Desarrollo Front-End',
+    title: 'Desarrollo Frontend — Especialidad principal',
+    featured: true,
     body: [
       { text: 'Experiencia en ' },
-      { text: 'Angular, WordPress, TypeScript y JavaScript (ES6+)', strong: true },
-      { text: '. Creación de interfaces modernas, dinámicas y optimizadas con ' },
-      { text: 'SCSS, Material Design, bootstrap', strong: true },
-      { text: '.' },
-    ],
-  },
-  {
-    icon: 'server',
-    iconTone: 'text-danger',
-    title: 'Administración de Servidores',
-    body: [
-      { text: 'Experiencia en ' },
-      { text: 'Linux (AlmaLinux, Ubuntu)', strong: true },
-      { text: '. Configuración y seguridad de servidores con ' },
-      { text: 'Apache, SSL y VPNs', strong: true },
-      { text: '.' },
-    ],
-  },
-  {
-    icon: 'speedometer',
-    iconTone: 'text-secondary',
-    title: 'Optimización y Escalabilidad',
-    body: [
-      { text: 'Implementación de ' },
-      { text: 'Lazy Loading, Change Detection y Virtual Scroll', strong: true },
-      { text: ' para mejorar el rendimiento. Desarrollo de aplicaciones modulares y escalables.' },
-    ],
-  },
-  {
-    icon: 'bug',
-    iconTone: 'text-warning',
-    title: 'Pruebas Automatizadas',
-    body: [
-      { text: 'Desarrollo de tests con ' },
-      { text: 'Playwright', strong: true },
-      { text: '. Garantizando estabilidad y confiabilidad en el código.' },
-    ],
-  },
-  {
-    icon: 'lightbulb',
-    iconTone: 'text-light',
-    title: 'Autogestión y Aprendizaje Continuo',
-    body: [
       {
-        text: 'Comprometido con la mejora constante, explorando nuevas tecnologías y metodologías para optimizar el desarrollo de software y la administración de sistemas.',
+        text: 'Angular, TypeScript, JavaScript, HTML5, CSS3, Sass/SCSS y Bootstrap',
+        strong: true,
+      },
+      {
+        text: '. Desarrollo de interfaces responsivas, componentes reutilizables, formularios e integración con APIs. Optimización con ',
+      },
+      { text: 'Lazy Loading, Change Detection y Virtual Scroll', strong: true },
+      { text: ' y pruebas automatizadas con ' },
+      { text: 'Playwright', strong: true },
+      { text: '.' },
+    ],
+  },
+  {
+    icon: 'phone',
+    iconTone: 'text-info',
+    title: 'Desarrollo multiplataforma',
+    body: [
+      { text: 'Aplicaciones multiplataforma y ' },
+      { text: 'PWA', strong: true },
+      { text: ' con ' },
+      { text: 'Ionic', strong: true },
+      { text: ' sobre una base ' },
+      { text: 'Angular', strong: true },
+      {
+        text: ', reutilizando componentes y compartiendo la lógica de la aplicación entre web y móvil.',
       },
     ],
   },
   {
-    icon: 'git',
+    icon: 'tools',
     iconTone: 'text-secondary',
-    title: 'Control de Versiones y DevOps',
+    title: 'Herramientas y entorno',
     body: [
-      { text: 'Manejo de ' },
-      { text: 'Git & GitHub', strong: true },
-      { text: '. Experiencia en ' },
+      { text: 'Uso de ' },
+      { text: 'Git', strong: true },
+      { text: ' como sistema de control de versiones y ' },
+      { text: 'GitHub', strong: true },
+      { text: ' para alojar repositorios y colaborar en proyectos. ' },
       { text: 'Docker', strong: true },
-      { text: ' y automatización de despliegues.' },
+      { text: ' y ' },
+      { text: 'Linux', strong: true },
+      { text: ' como parte del entorno de desarrollo y despliegue.' },
+    ],
+  },
+  {
+    icon: 'database',
+    iconTone: 'text-warning',
+    title: 'Backend y bases de datos',
+    body: [
+      { text: 'Conocimientos complementarios en ' },
+      { text: 'C#/.NET, APIs REST y PostgreSQL', strong: true },
+      {
+        text: ', aplicados en proyectos personales y profesionales. Área secundaria frente a mi especialidad frontend.',
+      },
+    ],
+  },
+  {
+    icon: 'robot',
+    iconTone: 'text-light',
+    title: 'Desarrollo asistido por IA',
+    body: [
+      { text: 'Utilizo ' },
+      { text: 'OpenCode, Dixie Partners y Preagent', strong: true },
+      {
+        text: ' como apoyo para analizar código, planificar cambios, explorar soluciones y revisar implementaciones. El criterio técnico y la validación siguen siendo míos.',
+      },
     ],
   },
 ];

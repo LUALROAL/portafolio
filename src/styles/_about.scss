@@ -38,13 +38,29 @@
     }
 
     .qualification {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15rem;
+      max-width: 380px;
       font-family: $font-mono;
-      font-size: 1.5rem;
+      font-size: 1.15rem;
       font-weight: bold;
+      line-height: 1.3;
       color: $green-primary !important;
       text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
       animation: neonGlow 1.5s infinite alternate;
-      display: inline-block;
+
+      .qualification-detail {
+        font-size: 0.85rem;
+        font-weight: normal;
+        color: $white-smoke;
+        text-shadow: 0 0 6px $green-primary;
+      }
+
+      &::after {
+        display: none;
+      }
     }
 
     p {
@@ -90,6 +106,10 @@
         0 0 20px $gray-light,
         0 0 40px $gray-light,
         0 0 80px $green-primary;
+
+      & + .about-description {
+        margin-top: 1rem;
+      }
     }
   }
 }

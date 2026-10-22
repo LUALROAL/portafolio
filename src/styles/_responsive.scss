@@ -19,9 +19,52 @@
     }
   }
 
-  .banner-container .title-banner {
-    font-size: 2.5rem;
-    text-align: center;
+  .banner-container {
+    min-height: auto;
+    padding: 2rem 1rem;
+
+    .title-banner {
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+    .hero-role-main {
+      font-size: 1.15rem;
+    }
+
+    .hero-role-specialty {
+      font-size: 0.9rem;
+    }
+
+    .hero-summary {
+      font-size: 0.9rem;
+    }
+  }
+
+  .about-container .qualification-container .qualification {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .banner-container {
+    .title-banner {
+      font-size: 2rem;
+    }
+
+    .hero-prompt {
+      font-size: 0.8rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero-btn {
+      justify-content: center;
+    }
   }
 }
 
@@ -68,6 +111,12 @@
             display: block;
             text-align: center;
             margin-right: 10px;
+          }
+
+          .role-specialty {
+            font-size: 10px;
+            white-space: normal;
+            text-align: center;
           }
         }
       }

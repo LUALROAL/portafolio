@@ -1,12 +1,18 @@
 <div class="container-fluid container-skills text-center py-5">
-  <h2 class="mb-4 title-skills">Mis Habilidades</h2>
+  <h2 class="mb-2 title-skills">Mis Habilidades</h2>
+  <p class="skills-intro">
+    Especializado en frontend, con herramientas y tecnologías complementarias
+    para cubrir el ciclo completo de un proyecto.
+  </p>
 
   <app-carrosell></app-carrosell>
 
-  <div class="row g-4 skills-list">
+  <div class="row g-4 skills-list justify-content-center">
     @for (card of cards; track card.title) {
       <app-skill-card
-        class="col-12 col-md-4"
+        class="col-12"
+        [class.col-md-6]="!card.featured"
+        [featured]="card.featured ?? false"
         [icon]="card.icon"
         [iconTone]="card.iconTone"
         [title]="card.title"

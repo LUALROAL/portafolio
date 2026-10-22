@@ -1,5 +1,10 @@
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2, inject } from '@angular/core';
-import { PORTFOLIO_URL } from '../../../core/site-links';
+import {
+  EMAIL,
+  GITHUB_URL,
+  LINKEDIN_URL,
+  PORTFOLIO_URL,
+} from '../../../core/site-links';
 import { SoundService } from '../../../services/audio/sound.service';
 
 @Component({
@@ -9,6 +14,11 @@ import { SoundService } from '../../../services/audio/sound.service';
   styleUrl: './nav-bar.component.scss',
 })
 export class NavBarComponent implements OnInit, OnDestroy {
+  readonly githubUrl = GITHUB_URL;
+  readonly linkedinUrl = LINKEDIN_URL;
+  readonly portfolioUrl = PORTFOLIO_URL;
+  readonly emailLink = `mailto:${EMAIL}`;
+
   private readonly el = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly renderer = inject(Renderer2);
   private readonly sound = inject(SoundService);

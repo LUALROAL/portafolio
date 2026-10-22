@@ -181,7 +181,7 @@
         white-space: nowrap;
         background-color: transparent;
         width: 0;
-        animation: typing 3s steps(20, end) forwards;
+        animation: typing 3s steps(24, end) forwards;
 
         &::after {
           content: "_";
@@ -189,6 +189,15 @@
           animation: blink 0.8s infinite;
           color: $green-primary;
         }
+      }
+
+      .role-specialty {
+        font-size: 0.85rem;
+        font-weight: normal;
+        letter-spacing: 0.04em;
+        color: $gray-light;
+        text-shadow: none;
+        white-space: nowrap;
       }
     }
   }
