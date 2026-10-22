@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, NgZone, OnDestroy, OnInit, inject, signal } from '@angular/core';
-import { PORTFOLIO_PAGES_URL } from '../../../core/site-links';
+import { PORTFOLIO_URL } from '../../../core/site-links';
 import { MatrixSliderService } from '../../../services/matrix/matrix-slider.service';
 
 @Component({
@@ -14,11 +14,11 @@ export class MatrixSliderComponent implements OnInit, OnDestroy {
   private readonly matrixSliderService = inject(MatrixSliderService);
 
   readonly slides = [
-    'The choice is yours 💊...',
-    'Wake up, Neo...',
-    'The Matrix has you...',
-    'Follow the white rabbit.',
-    'Knock, knock, Neo.',
+    'La elección es tuya 💊...',
+    'Despierta, Neo...',
+    'Matrix te tiene...',
+    'Sigue al conejo blanco.',
+    'Toc, toc, Neo.',
   ];
 
   readonly currentIndex = signal(0);
@@ -53,6 +53,6 @@ export class MatrixSliderComponent implements OnInit, OnDestroy {
   }
 
   goSite(): void {
-    window.open(PORTFOLIO_PAGES_URL, '_blank', 'noopener');
+    window.open(PORTFOLIO_URL, '_blank', 'noopener');
   }
 }

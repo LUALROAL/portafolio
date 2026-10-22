@@ -5,7 +5,7 @@
 export const PORTFOLIO_URL = 'https://lualroal.github.io/';
 
 /** Portfolio publicado como GitHub Pages del repositorio `portafolio`. */
-export const PORTFOLIO_PAGES_URL = 'https://lualroal.github.io/Portafolio/';
+export const PORTFOLIO_PAGES_URL = 'https://lualroal.github.io/portafolio/';
 
 export const GITHUB_URL = 'https://github.com/LUALROAL';
 
