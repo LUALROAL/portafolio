@@ -9,6 +9,6 @@ export const PORTFOLIO_PAGES_URL = 'https://lualroal.github.io/portafolio/';
 
 export const GITHUB_URL = 'https://github.com/LUALROAL';
 
-export const LINKEDIN_URL = 'https://www.linkedin.com/in/alejo-rodriguez/';
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/alejo-rodriguez-/';
 
 export const EMAIL = 'alejorodryguez@gmail.com';

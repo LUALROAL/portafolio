@@ -1,5 +1,5 @@
-<!-- about -->
-<div class="about">
+<!-- Menú flotante -->
+<div class="about" [class.open]="isOpen()" [class.scrolled]="showMenu()">
   <a class="bg_links social portfolio" (click)="navigateToSection('about')" title="Acerca de mí">
     <span class="icon"></span>
   </a>
@@ -12,6 +12,16 @@
   <a class="bg_links social header" (click)="navigateToSection('header')" title="Inicio">
     <span class="icon"></span>
   </a>
-  <a class="bg_links logo"></a>
+  <a
+    class="bg_links logo"
+    (click)="toggleMenu()"
+    (keydown.enter)="toggleMenu()"
+    (keydown.space)="toggleMenu(); $event.preventDefault()"
+    role="button"
+    tabindex="0"
+    title="Abrir menú de navegación"
+    aria-label="Abrir menú de navegación"
+    [attr.aria-expanded]="isOpen()"
+  ></a>
 </div>
-<!-- end about -->
+<!-- end menú flotante -->

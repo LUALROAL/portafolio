@@ -116,3 +116,15 @@
     text-shadow: 0 0 10px $green-primary, 0 0 20px $gray-light, 0 0 30px $green-primary;
   }
 }
+
+// En pantallas táctiles el hover puede quedar "pegado"; se anula.
+@media (hover: none) {
+  .skill-card:hover {
+    animation: none;
+    transform: none;
+    background: $gray-dark;
+    border-color: rgba($green-primary, 0.12);
+    font-size: inherit;
+    font-weight: inherit;
+  }
+}

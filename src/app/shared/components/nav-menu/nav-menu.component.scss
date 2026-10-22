@@ -1,35 +1,58 @@
-@use '../../../../styles/variables.scss'as *;
+@use '../../../../styles/variables.scss' as *;
 
-@keyframes neonGlow {
-  0% {
-    box-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary, 0 0 15px $green-primary, 0 0 20px $green-primary;
-  }
-  100% {
-    box-shadow: 0 0 10px $green-primary, 0 0 20px $green-primary, 0 0 30px $green-primary, 0 0 40px $green-primary;
-  }
-}
+$size: 50px;
+$cubic: cubic-bezier(0.64, 0.01, 0.07, 1.65);
 
-@keyframes radioactivePulse {
-  0% {
-    transform: scale(1);
-    filter: brightness(1);
+// Estado expandido del menú (hover en desktop o tap en móvil).
+@mixin menu-expanded {
+  width: 160px;
+  height: 160px;
+  transition: width 0.45s $cubic, height 0.45s $cubic;
+
+  .bg_links {
+    margin: 0 15px 50px 5px;
   }
-  50% {
-    transform: scale(1.1);
-    filter: brightness(1.5);
+
+  .logo {
+    opacity: 1;
   }
-  100% {
-    transform: scale(1);
-    filter: brightness(1);
+
+  .social {
+    opacity: 1;
+    pointer-events: auto;
+
+    .icon {
+      opacity: 0.9;
+    }
+
+    &.portfolio {
+      right: 0;
+      bottom: calc(100% - 80px);
+      transition: all 0.3s 0s $cubic;
+    }
+
+    &.dribbble {
+      bottom: 35%;
+      right: 35%;
+      transition: all 0.3s 0.15s $cubic;
+    }
+
+    &.linkedin {
+      bottom: 0;
+      right: calc(70% - 40px);
+      transition: all 0.3s 0.25s $cubic;
+    }
+
+    &.header {
+      bottom: -38%;
+      right: 30%;
+      transition: all 0.3s 0.15s $cubic;
+    }
   }
 }
 
 .about {
   cursor: pointer;
-  $cubic: cubic-bezier(0.64, 0.01, 0.07, 1.65);
-  $transition: 0.6s $cubic;
-  $size: 50px;
-  $size2: 50px;
   position: fixed;
   z-index: 10;
   top: 200px;
@@ -39,156 +62,230 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  transition: all 0.2s ease;
+  transition: width 0.45s $cubic, height 0.45s $cubic;
 
   .bg_links {
-    animation: neonGlow 1.5s infinite alternate, radioactivePulse 2s infinite ease-in-out;
-     width: $size2;
-     height: $size2;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     background-color: rgba(#000000, 0.2);
-     border-radius: 100%;
-     backdrop-filter: blur(5px);
-     position: absolute;
+    width: $size;
+    height: $size;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(#000000, 0.72);
+    border: 1px solid rgba($green-primary, 0.55);
+    border-radius: 100%;
+    box-shadow: 0 0 10px rgba($green-primary, 0.7),
+      0 0 24px rgba($green-primary, 0.35),
+      inset 0 0 10px rgba($green-primary, 0.12);
+    position: absolute;
+    pointer-events: auto;
+    transition: background-color 0.25s ease, transform 0.25s ease,
+      opacity 0.25s ease, box-shadow 0.25s ease;
+
+    &:hover {
+      box-shadow: 0 0 14px rgba($green-primary, 0.9),
+        0 0 32px rgba($green-primary, 0.5),
+        inset 0 0 12px rgba($green-primary, 0.18);
+    }
   }
 
   .logo {
-     width: $size;
-     height: $size;
-     z-index: 9;
-     background-image: url(../../../../assets/img/logos/cuadricula.png);
-     background-size: 100%;
-     background-repeat: no-repeat;
-     background-position: 0px 0px;
-     opacity: 0.9;
-     transition: all 1s 0.2s ease;
-     bottom: 0;
-     right: 0;
+    width: $size;
+    height: $size;
+    z-index: 9;
+    background-image: url(../../../../assets/img/logos/cuadricula.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.95;
+    bottom: 0;
+    right: 0;
+    filter: drop-shadow(0 0 5px rgba($green-primary, 0.75));
+    transition: transform 0.25s ease, opacity 0.25s ease;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border: 1px solid rgba($green-primary, 0.65);
+      border-radius: 50%;
+      animation: menuPulse 2.6s ease-out infinite;
+      pointer-events: none;
+    }
+
+    &:hover {
+      transform: scale(1.06);
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $green-primary;
+      outline-offset: 3px;
+    }
   }
 
   .social {
-     opacity: 0;
-     right: 0;
-     bottom: 0;
+    opacity: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.3s ease;
 
-     .icon {
-        width: 100%;
-        height: 100%;
-        background-size: 20px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-color: transparent;
-        display: flex;
-        transition: all 0.2s ease, background-color 0.4s ease;
-        opacity: 0;
-        border-radius: 100%;
-     }
+    .icon {
+      width: 100%;
+      height: 100%;
+      background-size: 20px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: transparent;
+      display: flex;
+      border-radius: 100%;
+      opacity: 0;
+      filter: drop-shadow(0 0 3px rgba($green-primary, 0.65));
+      transition: opacity 0.2s ease, background-color 0.2s ease;
+    }
 
-     &.portfolio {
-        transition: all 0.8s ease;
+    &:hover {
+      .icon {
+        background-size: 65%;
+        opacity: 1;
+      }
+    }
 
-        .icon {
-           background-image: url(../../../../assets/img/user.png);
-        }
-     }
+    &.portfolio {
+      .icon {
+        background-image: url(../../../../assets/img/user.png);
+      }
+    }
 
-     &.dribbble {
-        transition: all 0.3s ease;
-        .icon {
-           background-image: url(../../../../assets/img/logos/habilidades.png);
-        }
-     }
+    &.dribbble {
+      .icon {
+        background-image: url(../../../../assets/img/logos/habilidades.png);
+      }
+    }
 
-     &.linkedin {
-        transition: all 0.8s ease;
-        .icon {
-           background-image: url(../../../../assets/img/logos/proyeccts.png);
-        }
-     }
-     &.header {
-        transition: all 0.8s ease;
-        .icon {
-           background-image: url(../../../../assets/img/logos/flecha-arriba.png);
-        }
-     }
+    &.linkedin {
+      .icon {
+        background-image: url(../../../../assets/img/logos/proyeccts.png);
+      }
+    }
 
+    &.header {
+      .icon {
+        background-image: url(../../../../assets/img/logos/flecha-arriba.png);
+      }
+    }
   }
 
-  &:hover {
-     width: 160px;
-     height: 160px;
-     transition: all $transition;
+  &.open {
+    @include menu-expanded;
+  }
+
+  // El hover solo se usa en dispositivos con puntero fino.
+  @media (hover: hover) and (pointer: fine) and (min-width: 761px) {
+    &:hover {
+      @include menu-expanded;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .about {
+    top: auto;
+    bottom: calc(18px + env(safe-area-inset-bottom));
+    right: 18px;
+    width: 56px;
+    height: 56px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+
+    &.scrolled {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .bg_links {
+      right: 3px;
+      bottom: 3px;
+    }
+
+    .logo {
+      right: 3px;
+      bottom: 3px;
+    }
+
+    .social {
+      right: 3px;
+      bottom: 3px;
+      transform: translateY(0) scale(0.8);
+      transition: transform 0.3s ease, opacity 0.25s ease;
+
+      .icon {
+        transition: opacity 0.2s ease;
+      }
+    }
+
+    &.open {
+      width: 56px;
+      height: 56px;
+      transition: none;
+
       .bg_links {
-          transition: all $transition;
-          margin: 0px 15px 50px 5px;
-          // Arriba - Derecha - Abajo - Izquierda
+        margin: 0;
+        transition: background-color 0.25s ease, transform 0.25s ease;
       }
 
-     .logo {
+      .social {
         opacity: 1;
-        transition: all 0.6s ease;
-     }
-
-     .social {
-        opacity: 1;
+        right: 3px;
+        bottom: 3px;
+        transition: transform 0.3s ease, opacity 0.25s ease;
 
         .icon {
-           opacity: 0.9;
-        }
-
-        &:hover {
-           background-size: 28px;
-           .icon {
-              background-size: 65%;
-              opacity: 1;
-           }
+          opacity: 0.9;
         }
 
         &.portfolio {
-           right: 0;
-           bottom: calc(100% - 80px);
-           transition: all 0.3s 0s $cubic;
-           .icon {
-              &:hover {
-                 background-color: #698fb7;
-              }
-           }
+          right: 3px;
+          bottom: 3px;
+          transform: translateY(-64px) scale(1);
+          transition: transform 0.3s ease, opacity 0.25s ease;
         }
 
         &.dribbble {
-           bottom: 35%;
-           right: 35%;
-           transition: all 0.3s 0.15s $cubic;
-           .icon {
-              &:hover {
-                 background-color: #ea4c89;
-              }
-           }
+          right: 3px;
+          bottom: 3px;
+          transform: translateY(-124px) scale(1);
+          transition: transform 0.3s ease, opacity 0.25s ease;
         }
 
         &.linkedin {
-           bottom: 0;
-           right: calc(70% - 40px);
-           transition: all 0.3s 0.25s $cubic;
-           .icon {
-              &:hover {
-                 background-color: #0077b5;
-              }
-           }
+          right: 3px;
+          bottom: 3px;
+          transform: translateY(-184px) scale(1);
+          transition: transform 0.3s ease, opacity 0.25s ease;
         }
+
         &.header {
-          bottom: -38%;
-          right: 30%;
-          transition: all 0.3s 0.15s $cubic;
-          .icon {
-             &:hover {
-                background-color: $green-primary;
-             }
-          }
+          right: 3px;
+          bottom: 3px;
+          transform: translateY(-244px) scale(1);
+          transition: transform 0.3s ease, opacity 0.25s ease;
         }
       }
-   }
+    }
+  }
 }
 
+@keyframes menuPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}

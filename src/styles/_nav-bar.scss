@@ -25,7 +25,6 @@
     7px 7px 20px 0px rgba(0, 0, 0, 0.1),
     4px 4px 5px 0px rgba(0, 0, 0, 0.1);
   text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
-  animation: neonGlow 1.5s infinite alternate;
 }
 
 .btn-12 {
@@ -101,7 +100,8 @@
         text-decoration: none !important;
         font-size: 2rem !important;
         margin-right: 1rem;
-        animation: neonGlow 1.5s infinite alternate;
+        text-shadow: 0 0 5px $green-primary, 0 0 10px $green-primary;
+        transition: color 0.2s ease, transform 0.2s ease;
 
         .bi {
           background: transparent !important;
@@ -109,7 +109,7 @@
         }
 
         &:hover {
-          transform: matrix(1.1, 0, 0, 1.1, 0, 0) !important;
+          transform: matrix(1.08, 0, 0, 1.08, 0, 0) !important;
         }
 
         &.social-linkedin:hover {

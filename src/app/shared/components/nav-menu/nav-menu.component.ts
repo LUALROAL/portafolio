@@ -1,4 +1,14 @@
-import { Component, ElementRef, OnDestroy, OnInit, Renderer2, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  inject,
+  signal,
+} from '@angular/core';
 import { SoundService } from '../../../services/audio/sound.service';
 
 @Component({
@@ -6,8 +16,15 @@ import { SoundService } from '../../../services/audio/sound.service';
   imports: [],
   templateUrl: './nav-menu.component.html',
   styleUrl: './nav-menu.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavMenuComponent implements OnInit, OnDestroy {
+  /** Estado del menú flotante para interacción táctil (móvil). */
+  readonly isOpen = signal(false);
+
+  /** En móvil el acceso se muestra al salir de la zona del hero. */
+  readonly showMenu = signal(false);
+
   private readonly el = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly renderer = inject(Renderer2);
   private readonly sound = inject(SoundService);
@@ -17,6 +34,7 @@ export class NavMenuComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.addHoverSoundToLinks();
+    this.updateMenuVisibility();
   }
 
   ngOnDestroy(): void {
@@ -24,6 +42,47 @@ export class NavMenuComponent implements OnInit, OnDestroy {
       cancelAnimationFrame(this.scrollFrame);
     }
     clearTimeout(this.scrollTimeout);
+  }
+
+  toggleMenu(): void {
+    this.isOpen.update((open) => !open);
+  }
+
+  /** Cierra el menú al tocar fuera o presionar Escape. */
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (!this.isOpen()) {
+      return;
+    }
+
+    const target = event.target as Node | null;
+    if (target && !this.el.nativeElement.contains(target)) {
+      this.isOpen.set(false);
+    }
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    this.isOpen.set(false);
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    this.updateMenuVisibility();
+  }
+
+  /** Muestra el acceso flotante solo después del hero en móvil. */
+  private updateMenuVisibility(): void {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const shouldShow = window.scrollY > 480;
+    this.showMenu.set(shouldShow);
+
+    if (!shouldShow) {
+      this.isOpen.set(false);
+    }
   }
 
   /** Sonido de hover para cada enlace del menú lateral. */
@@ -41,6 +100,7 @@ export class NavMenuComponent implements OnInit, OnDestroy {
   }
 
   navigateToSection(sectionId: string): void {
+    this.isOpen.set(false);
     this.scrollTimeout = setTimeout(() => {
       const section = document.querySelector(`#${sectionId}`);
       this.playSound();
